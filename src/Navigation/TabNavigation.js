@@ -12,20 +12,20 @@ const Tab = createBottomTabNavigator()
 export default function TabNavigation (){
     return(
         <NavigationContainer>
-        <Tab.Navigator>
-            <Tab.Screen 
-            name = 'Home' 
-            component={Home}
-            />
-            <Tab.Screen 
-            name = 'Profile' 
-            component={Profile}
-            />
-            <Tab.Screen 
-            name = 'Posts' 
-            component={Posts}
-            />
-        </Tab.Navigator>
+            <Tab.Navigator>
+                <Tab.Screen 
+                    name = 'Home' 
+                    component={Home}
+                />
+                <Tab.Screen 
+                    name = 'Profile' 
+                    component={Profile}
+                />
+                <Tab.Screen 
+                    name = 'Posts' 
+                    component={Posts}
+                />
+            </Tab.Navigator>
         </NavigationContainer>
         
     )

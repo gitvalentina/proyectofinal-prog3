@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Text, View, TextInput, StyleSheet, TouchableOpacity} from "react-native";
-import {auth} from '../../firebase/config'
+import {auth} from '../firebase/config';
 
 
 class Register extends Component {
@@ -18,11 +18,6 @@ class Register extends Component {
         .catch(e => console.log(e))
     }
 
-    
-
-
-
-
     render(){
         return(
             <View>
@@ -30,13 +25,13 @@ class Register extends Component {
                 <TextInput
                 style={Styles.input}
                 placeholder= 'Escribe tu email'
-                keyboardType="emai-address"
+                keyboardType="email-address"
                 onChangeText={text => this.setState({input1: text})}
                 value={this.state.input1}
                 />
                 <TextInput
                 style={Styles.input}
-                placeholder= 'Escribe tu password'
+                placeholder= 'Escribe tu contraseña'
                 keyboardType="default"
                 onChangeText={text => this.setState({input2: text})}
                 value={this.state.input2}

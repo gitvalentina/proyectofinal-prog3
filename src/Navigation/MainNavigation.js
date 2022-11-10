@@ -15,32 +15,20 @@ function MainNavigation (){
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen 
-                name="Login" 
-                component={LoginScreen} 
-                options={{
-                    headerShown: false
-                }}
+                    name="Login" 
+                    component={LoginScreen} 
                 />
                 <Stack.Screen 
-                name="Register" 
-                component={Register} 
-                options={{
-                    headerShown: false 
-                }}
+                    name="Register" 
+                    component={Register} 
                 />
                 <Stack.Screen
-                name='TabNavigation'
-                component={TabNavigation}
-                options={{
-                    headerShown: false
-                }}
+                    name='TabNavigation'
+                    component={TabNavigation}
                 />
                 <Stack.Screen
-                name='Home'
-                component={Home}
-                options={{
-                    headerShown: false
-                }}
+                    name='Home'
+                    component={Home}
                 />
             </Stack.Navigator>
         </NavigationContainer>
