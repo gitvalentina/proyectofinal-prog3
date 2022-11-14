@@ -56,7 +56,7 @@ class LoginScreen extends Component {
         {this.props.error==""?<Text></Text>: <Text style={styles.textoerror}>{this.props.error}</Text>}
         {this.state.email.length==0|| this.state.password.length==0? 
             <TouchableOpacity style={styles.touchableL}>
-                <Text style={styles.texto}>Ingresa Email y Password</Text>
+                <Text>Ingresa Email y Password</Text>
             </TouchableOpacity>:
             <TouchableOpacity style={styles.touchable} onPress={()=> this.loguear(this.state.email, this.state.password)}>
                 <Text>Log In</Text>
@@ -101,19 +101,20 @@ container:{
         borderStyle:"solid",
         borderWidth:1,
         borderColor:"rgba(84, 78, 73, 0.9)",
-        justifyContent: "center"
+        justifyContent: "center",
+        backgroundColor:"rgba(176, 145, 0, 0.9)"
     },
     touchable:{
         textAlign:"center",
         padding: 5,
-        backgroundColor: " rgba(84, 204, 73, 0.9)",
+        backgroundColor: "rgba(176, 145, 0, 0.9)",
         marginBottom: 10,
         borderRadius:4,
         paddingHorizontal: 10,
         paddingVertical: 6,
         borderStyle:"solid",
         borderWidth:1,
-        borderColor:"rgba(84, 204, 73, 0.9)"
+        borderColor:"rgba(176, 145, 0, 0.9)"
     },
 
     textoerror: {
@@ -127,7 +128,9 @@ container:{
         textAlign:"center"
     },
     texto3:{
-        color:'white'
+        color:'white',
+        fontSize: 40,
+        textAlign: 'center'
     }
 })
 

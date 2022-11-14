@@ -30,7 +30,7 @@ class Register extends Component {
         return (
         <View style={styles.container}>
             <View>
-                <Text>Registro:</Text>
+                <Text style={styles.texto3}>REGISTER</Text>
                 <TextInput
                     style={styles.input}
                     placeholder='Escribi el nombre de usuario'
@@ -54,14 +54,13 @@ class Register extends Component {
                     secureTextEntry={true}
                 />
                 <View>
-                    <TouchableOpacity onPress={()=> this.registrarUsuario(this.state.username, this.state.email, this.state.password)}>
+                    <TouchableOpacity style={styles.touchable} onPress={()=> this.registrarUsuario(this.state.username, this.state.email, this.state.password)}>
                         <Text>Registrarme</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text>Ya tienes un cuenta?</Text>
                     <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
-                        <Text>Logueate</Text>
+                        <Text style={styles.texto2}> Ya tienes un cuenta? Logueate</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -74,13 +73,42 @@ class Register extends Component {
         container:{
         flex:1,
         justifyContent:'center',
-        paddingHorizontal:21
+        paddingHorizontal:10,
+        backgroundColor:"black",
+        height:"100%",
         },
         input:{
-            borderWidth:1
+            height: 50,
+            borderWidth:3,
+            backgroundColor:"white",
+            borderStyle:"solid",
+            borderColor: "rgba(176, 145, 0, 0.9)",
+            borderRadius:6,
+            paddingHorizontal:10,
+            paddingVertical:15,
+            marginVertical:10,
+            justifyContent: 'flex-end'
         },
-        containerRedirect:{
-            marginTop: 32
+        touchable:{
+            textAlign:"center",
+            padding: 5,
+            backgroundColor: "rgba(176, 145, 0, 0.9)",
+            marginBottom: 10,
+            borderRadius:4,
+            paddingHorizontal: 10,
+            paddingVertical: 6,
+            borderStyle:"solid",
+            borderWidth:1,
+            borderColor:"rgba(176, 145, 0, 0.9)"
+        },
+        texto2:{
+            color:"white",
+            textAlign:"center"
+        },
+        texto3:{
+            color:'white',
+            textAlign: 'center',
+            fontSize: 40
         }
     })
     
