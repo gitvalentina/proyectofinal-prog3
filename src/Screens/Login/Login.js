@@ -48,7 +48,7 @@ class LoginScreen extends Component {
         <TextInput
             style={styles.input}
             keyboardType='default'
-            placeholder='Ingresa tu Password'
+            placeholder='Ingresa tu contraseña'
             onChangeText={text => this.setState({password: text})}
             value={this.state.password}
             secureTextEntry={true}
@@ -61,7 +61,7 @@ class LoginScreen extends Component {
 
         <View>
             <Text>
-            Todavia no tenes una cuenta registrada
+            Todavia no tenes una cuenta registrada?
             </Text>
             <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}> 
             <Text>Registrate</Text>
@@ -77,10 +77,15 @@ const styles = StyleSheet.create({
 container:{
     flex:1,
     justifyContent:'center',
-    paddingHorizontal:21
+    paddingHorizontal:21,
+    width:'100%',
+    alignItems: 'center'
 },
     input:{
-        borderWidth:1
+        borderWidth:1,
+        width:'75%',
+        height: 60,
+        marginTop:21
     }
 })
 

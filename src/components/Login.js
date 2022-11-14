@@ -4,8 +4,8 @@ import {auth} from '../firebase/config';
 
 
 class Login extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state={
             email: '',
             password: '',
@@ -15,12 +15,15 @@ class Login extends Component {
 
     loguear(email, password){
         auth.signInWithEmailAndPassword(email, password)
-        .then(resp => console.log(resp))
-        .catch(e => console.log(e))
+        .then(resp => {
+            this.props.navigation.navigate('TabNavigation')
+        })
+        .catch(err => console.log(err))
 
 
     }
     render(){
+        console.log(this.props)
         return(
             <View>
                 <Text> Login </Text>
@@ -43,7 +46,9 @@ class Login extends Component {
                     <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.password)}>
                         <Text> Login </Text>
                     </TouchableOpacity>
-                
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
+                        <Text>Registrate</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -56,4 +61,4 @@ const Styles = StyleSheet.create({
     }
 })
 
-export default Login
+export default Login;

@@ -15,7 +15,7 @@ class Register extends Component {
     registrarUsuario(email, password){
         auth.createUserWithEmailAndPassword(email, password)
         .then(resp => console.log(resp))
-        .catch(e => console.log(e))
+        .catch(e => console.log(err))
     }
 
     render(){
@@ -38,8 +38,11 @@ class Register extends Component {
                 secureTextEntry={true}
                 />
                 <View>
-                    <TouchableOpacity onPress={()=> this.registrarUsuario(this.state.input1, this.state.input2)}>
+                    <TouchableOpacity onPress={()=> this.registrarUsuario(this.state.input1, this.state.input2)} onLongPress={()=> this.props.navigation.navigate('Home')} >
                         <Text> Registrarme</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('Login')}>
+                        <Text>Ya estoy registrado</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -49,8 +52,8 @@ class Register extends Component {
 
 const Styles = StyleSheet.create({
     input: {
-        borderWidth: 2,
+        borderWidth: 1,
     }
 })
 
-export default Register
+export default Register;

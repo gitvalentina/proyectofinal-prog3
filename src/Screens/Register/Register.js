@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
- import {auth, db} from '../../firebase/config';
+import {auth, db} from '../../firebase/config';
 
 class Register extends Component {
     constructor(){
@@ -30,7 +30,7 @@ class Register extends Component {
         return (
         <View style={styles.container}>
             <View>
-                <Text>Formulario del registro</Text>
+                <Text>Registro:</Text>
                 <TextInput
                     style={styles.input}
                     placeholder='Escribi el nombre de usuario'
