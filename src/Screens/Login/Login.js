@@ -84,4 +84,4 @@ container:{
     }
 })
 
-export default LoginScreen
+export default LoginScreen;
