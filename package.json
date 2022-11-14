@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "valen":"SET NODE_OPTIONS=--openssl-legacy-provider && expo start --web"
+    "valen": "SET NODE_OPTIONS=--openssl-legacy-provider && expo start --web"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
@@ -17,7 +17,8 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "expo-camera": "~12.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

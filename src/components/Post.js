@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import {auth, db} from '../firebase/config';
 import firebase from 'firebase';
+import Camara from './Camara';
 
 class Post extends Component {
     constructor(props){

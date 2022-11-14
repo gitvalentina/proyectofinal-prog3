@@ -11,11 +11,9 @@ class Postear extends Component {
                 createdAt:'',
                 photo:'',
                 showCamera: true
-
             }
         }
     
-
     enviarPost(description){
         db.collection('posts').add({
             owner:auth.currentUser.email,
