@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, View, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import {auth, db} from '../../firebase/config';
 import Post from '../../components/Post';
+import Buscador from '../Buscador/Buscador';
 
 class Home extends Component{
     constructor(){
@@ -47,6 +48,19 @@ class Home extends Component{
     }
 }
 const styles = StyleSheet.create({
-
+    container1:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+      },
+      container2:{
+        flex:3
+      },
+      container3:{
+        flex:5
+      },
+      image:{
+        height:300
+      }
 })
 export default Home;
