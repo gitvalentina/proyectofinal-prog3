@@ -37,7 +37,7 @@ class LoginScreen extends Component {
     <View style={styles.container}>
     <View>
 
-        <Text>Login</Text>
+        <Text style={styles.texto3} >Inicia Sesion</Text>
         <TextInput
             style={styles.input}
             keyboardType='email-address'
@@ -53,34 +53,82 @@ class LoginScreen extends Component {
             value={this.state.password}
             secureTextEntry={true}
         />
-        <View>
-            <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.password)}>
+
+        {this.props.error==""?<Text></Text>: <Text style={styles.textoerror}>{this.props.error}</Text>}
+        {this.state.email.length==0|| this.state.password.length==0? 
+            <TouchableOpacity style={styles.touchableL}>
+                <Text style={styles.texto}>Ingresa Email y Password</Text>
+            </TouchableOpacity>:
+            <TouchableOpacity style={styles.touchable} onPress={()=> this.loguear(this.state.email, this.state.password)}>
                 <Text>Log In</Text>
             </TouchableOpacity>
-        </View>
-
-        <View>
-            <Text>
-            Todavia no tenes una cuenta registrada
-            </Text>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}> 
-            <Text>Registrate</Text>
-            </TouchableOpacity>
-        </View>
-        </View>
+        }
+        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}> 
+            <Text style={styles.texto2}> Todavia no tienes cuenta?  Registrate</Text>
+        </TouchableOpacity>
     </View>
-    )
-}
+    </View>)}
 }
 
 const styles = StyleSheet.create({
 container:{
     flex:1,
     justifyContent:'center',
-    paddingHorizontal:21
-},
+    marginTop:20,
+    paddingHorizontal: 10,
+    backgroundColor:"black",
+    height:"100%",
+
+    },
     input:{
-        borderWidth:1
+        height: 50,
+        borderWidth:3,
+        backgroundColor:"white",
+        borderStyle:"solid",
+        borderColor: "rgba(176, 145, 0, 0.9)",
+        borderRadius:6,
+        paddingHorizontal:10,
+        paddingVertical:15,
+        marginVertical:10,
+        justifyContent: 'flex-end'
+    }, 
+    touchableL:{
+        textAlign:"center",
+        padding: 5,
+        marginBottom: 10,
+        borderRadius:4,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderStyle:"solid",
+        borderWidth:1,
+        borderColor:"rgba(84, 78, 73, 0.9)",
+        justifyContent: "center"
+    },
+    touchable:{
+        textAlign:"center",
+        padding: 5,
+        backgroundColor: " rgba(84, 204, 73, 0.9)",
+        marginBottom: 10,
+        borderRadius:4,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderStyle:"solid",
+        borderWidth:1,
+        borderColor:"rgba(84, 204, 73, 0.9)"
+    },
+
+    textoerror: {
+        color: "red"
+    },
+    texto:{
+        color:"#FFF"
+    },
+    texto2:{
+        color:"white",
+        textAlign:"center"
+    },
+    texto3:{
+        color:'white'
     }
 })
 
