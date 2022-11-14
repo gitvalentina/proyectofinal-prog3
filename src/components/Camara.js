@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 import {Camera} from 'expo-camera';
  import {storage} from '../firebase/config';
 
@@ -11,6 +11,7 @@ class Camara extends Component {
             showCamara: false,
             fotoUri:'' //uri de la foto en la memoria interna del dispositivo
         }
+        this.metodosDeCamara
     }
 
     componentDidMount(){ //1- solicitamos permisos a la camara del usuario c el metodo permission del componente Camera instalado; nos retorna un booleano que modifica el estado
@@ -25,7 +26,7 @@ class Camara extends Component {
     }
 
     tomarFoto(){
-        this.metodosCamara.takePictureAsync()
+        this.metodosDeCamara.takePictureAsync()
         .then(foto => this.setState({
             fotoUri: foto.uri,
             showCamara:false
@@ -36,7 +37,7 @@ class Camara extends Component {
     aceptarImagen(){ //para guardar la foto
         fetch(this.state.fotoUri) //pega la url donde guarde la foto q subi, traemos recursos propios de nuestro proyecto
         .then(res=>res.blob()) // recibimos una respuesta de imagen en binario; el metodo blob nos retorna el booleano y un formato apto para firebase
-        .then (image=>{ 
+        .then (imagen=>{ 
             const ref = storage.ref(`fotos/${Date.now()}.jpg`) //llamo al storage con el metodo ref que nos da la referncia de donde guarda firebase la informacion. Con date.now logramos q se llamen todos los archivos distintos
             ref.put(imagen) //mandamos la imagen q recibimos por parametro
             .then(()=> { //si no funciona, hacemos una promesa
@@ -54,10 +55,10 @@ class Camara extends Component {
                 {
                 this.state.showCamara ? //si es true muestra la camara
                 <>
-                    <Camara
-                    style={styles.camarabody}
-                    type={Camara.Constants.Type.back}
-                    ref={metodos => this.metodosCamara = metodos}
+                    <Camera //hijo de mi componente
+                        style={styles.camarabody}
+                        type={Camera.Constants.Type.back}
+                        ref={metodos => this.metodosDeCamara = metodos } //guarda los metodos de camara en la variable metodos de camara y luego se los pasa al padre
                     />
                     <TouchableOpacity onPress={ () => this.tomarFoto()}>
                         <Text> Adjuntale una foto </Text>

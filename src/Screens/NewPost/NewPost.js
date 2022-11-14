@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
+import {View, StyleSheet, TextInput, Text, TouchableOpacity} from 'react-native';
 import Camara from '../../components/Camara';
 import {auth, db} from '../../firebase/config'
 
-class Postear extends Component {
+class NewPost extends Component {
     constructor(props){
-        super()
+        super(props)
             this.state={
                 text:'',
                 createdAt:'',
@@ -18,7 +18,7 @@ class Postear extends Component {
         db.collection('posts').add({
             owner:auth.currentUser.email,
             createdAt: Date.now(),
-            description: description,
+            description: this.state.text,
             likes:[],
             comments:[],
             photo: this.state.photo
@@ -45,27 +45,30 @@ class Postear extends Component {
         return (
             <View style={styles.container}>
                 {
-                this.state.showCamera ?
-                <Camara
-                subirImagen = {(url)=> this.subirImagen(url)}
-                /> :
-                <View>
-                    <TextInput style={styles.input}
-                        keyboardType="default"
-                        placeholder="Título"
-                        onChangeText={text => this.setState({title:text})}
-                        value={this.state.text} 
-                    />
-                    {this.state.title.length==0|| this.state.description.length==0? 
-                        <TouchableOpacity style={styles.touchablegray}    >
-                            <Text style={styles.texto}>Crea tu posteo</Text>
-                        </TouchableOpacity>:
-                        <TouchableOpacity style={styles.touchable}   onPress={()=> this.submitPost()} >
-                            <Text style={styles.texto}>Crea tu posteo</Text>
-                        </TouchableOpacity>}
-                </View>
+                    this.state.showCamera ?
+                    <Camara subirImagen = {(url)=> this.subirImagen(url)}/> 
+                    :
+                    <View>
+                        <TextInput style={styles.input}
+                            keyboardType="default"
+                            placeholder="Título"
+                            onChangeText={text => this.setState({text: text})}
+                            value={this.state.text} 
+                        />
+                        {
+                            this.state.text === '' ? 
+                                <TouchableOpacity style={styles.touchablegray}    >
+                                    <Text style={styles.texto}>Crea tu posteo</Text>
+                                </TouchableOpacity>
+                                :
+                                <TouchableOpacity style={styles.touchable}   onPress={()=> this.enviarPost()} >
+                                    <Text style={styles.texto}>Crea tu posteo</Text>
+                                </TouchableOpacity>
+                        }
+                    </View>
                 }
-            </View>);
+            </View>
+        );
     }
 }
 
@@ -89,4 +92,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Postear;
+export default NewPost;

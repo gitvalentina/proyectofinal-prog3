@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../Screens/Home/Home'
 import Profile from '../Screens/Profile/Profile';
-import Posts from '../Screens/Posts/Posts';
+import NewPost from '../Screens/NewPost/NewPost';
 
 
 const Tab = createBottomTabNavigator()
@@ -15,14 +15,17 @@ export default function TabNavigation (){
                 <Tab.Screen 
                     name = 'Home' 
                     component={Home}
+                    options={ { headerShown: false } } 
                 />
                 <Tab.Screen 
                     name = 'Profile' 
                     component={Profile}
+                    options={ { headerShown: false } } 
                 />
                 <Tab.Screen 
-                    name = 'Posts' 
-                    component={Posts}
+                    name = 'NewPost' 
+                    component={NewPost}
+                    options={ { headerShown: false } } 
                 />
             </Tab.Navigator>
     )
