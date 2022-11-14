@@ -48,12 +48,13 @@ class LoginScreen extends Component {
         <TextInput
             style={styles.input}
             keyboardType='default'
-            placeholder='Ingresa tu Password'
+            placeholder='Ingresa tu contraseña'
             onChangeText={text => this.setState({password: text})}
             value={this.state.password}
             secureTextEntry={true}
         />
 
+<<<<<<< HEAD
         {this.props.error==""?<Text></Text>: <Text style={styles.textoerror}>{this.props.error}</Text>}
         {this.state.email.length==0|| this.state.password.length==0? 
             <TouchableOpacity style={styles.touchableL}>
@@ -61,6 +62,14 @@ class LoginScreen extends Component {
             </TouchableOpacity>:
             <TouchableOpacity style={styles.touchable} onPress={()=> this.loguear(this.state.email, this.state.password)}>
                 <Text>Log In</Text>
+=======
+        <View>
+            <Text>
+            Todavia no tenes una cuenta registrada?
+            </Text>
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}> 
+            <Text>Registrate</Text>
+>>>>>>> 88f8b848925ea79a312aa73c0f6d7d93eb135f07
             </TouchableOpacity>
         }
         <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}> 
@@ -74,6 +83,7 @@ const styles = StyleSheet.create({
 container:{
     flex:1,
     justifyContent:'center',
+<<<<<<< HEAD
     marginTop:20,
     paddingHorizontal: 10,
     backgroundColor:"black",
@@ -129,7 +139,5 @@ container:{
     },
     texto3:{
         color:'white'
-    }
-})
 
 export default LoginScreen;
