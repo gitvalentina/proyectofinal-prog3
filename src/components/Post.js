@@ -10,7 +10,8 @@ class Post extends Component {
         super(props)
         this.state = {
             likeStart: false, //su estado arranca en false
-            cantidadDeLikes: this.props.data.likes.length //length del array de likes.
+            cantidadDeLikes: this.props.data.likes.length, //length del array de likes.
+        
         }
     }
     componentDidMount(){
@@ -30,7 +31,7 @@ class Post extends Component {
         .doc(this.props.id) //identificamos el documento sobre el cual estamos trabajando (cada posteo); 
                             //se identifica con el id capturado en el home, con el snapshot; se recibe por las props
         .update({
-            likes: firebase.firestone.FieldValue.arrayUnion(auth.currentUser.email) //FieldValue chek q sea un array lo q vamos a actualizar
+            likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email) //FieldValue chek q sea un array lo q vamos a actualizar
             //arrayUnion/Remove ns permite actualizar en firebase el array de likes (importar antes firebase)
             //auth.current... nos trae el email del usuario logueado; 1ro importar auth
             //likes: nos devuelve un obj literal y le aclaramos la prop que queremos acualizar; por cada like pasar nuestro email de usuario
