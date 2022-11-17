@@ -91,7 +91,14 @@ class Camara extends Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                : <Text>No me haz dado permisos para mostrar la foto</Text>
+                :   <>
+                        <Text style={{textAlign: 'center', fontSize:15, fontWeight: 'bold'}}> Foto Eliminada </Text>
+                        <TouchableOpacity style={styles.text } onPress={ () => this.tomarFoto()}>
+                            <Text style={{fontSize:30, fontWeight: 'bold', backgroundColor:'white', padding:10 }}> Quieres tomar otra foto? <FontAwesomeIcon  icon={ faCamera } /></Text>
+                            
+                        </TouchableOpacity> 
+                    </>
+                
                 }
             </>
         );
@@ -116,8 +123,6 @@ const styles = StyleSheet.create({
         height:50,
         alignItems: 'center',
         margin:20
-        
-
     }
 })
 
