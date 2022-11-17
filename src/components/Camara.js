@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 import {Camera} from 'expo-camera';
  import {storage} from '../firebase/config';
+ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 //Creamos el componente Camara para que lo utilicen nuestros posteos
@@ -50,54 +53,71 @@ class Camara extends Component {
         .catch(err => console.log(err))
     }
 
+    rechazarImagen(){
+        this.setState({
+            fotoUri: "",
+            mostrarCamara: true
+        })
+    }
+
     render() {
         return (
-            <View style={styles.container}>
+            <>
                 {
                 this.state.showCamara ? //si es true muestra la camara
                 <>
                     <Camera //hijo de mi componente
-                        style={styles.camarabody}
+                        style={{flex:1, width:"100%" }}
                         type={Camera.Constants.Type.back}
                         ref={metodos => this.metodosDeCamara = metodos } //guarda los metodos de camara en la variable metodos de camara y luego se los pasa al padre
                     />
-                    <TouchableOpacity onPress={ () => this.tomarFoto()}>
-                        <Text> Adjuntale una foto </Text>
+                    <TouchableOpacity style={{alignItems:"center"}} onPress={ () => this.tomarFoto()}>
+                        <FontAwesomeIcon  style={styles.iconocamara} icon={ faCamera } />
                     </TouchableOpacity>
                 </>
                 : this.state.showCamara === false && this.state.fotoUri != '' ? //validamos para que nos renderice la imagen si la url es distinto de vacio; siempre que nos de el permiso
-                    <View>
+                    <View style={styles.container}>
                         <Image
                         source={{uri: this.state.fotoUri}}
                         style={styles.image}
                         />
-                        <TouchableOpacity onPress={()=> this.aceptarImagen()}>
-                            <Text>
-                                Aceptar imagen
-                            </Text>
+                        <TouchableOpacity style={styles.text} onPress={()=> this.aceptarImagen()}>
+                            <Text style={{fontSize:30, fontWeight: 'bold'}}> ACEPTAR  IMAGEN </Text>
+                            
                         </TouchableOpacity>
-                        <TouchableOpacity  onPress={()=> this.rechazarImagen()}>
-                            <Text>
-                                Rechazar imagen
+                        <TouchableOpacity style={styles.text} onPress={()=> this.rechazarImagen()}>
+                            <Text style={{fontSize:30, fontWeight: 'bold'}}>
+                                RECHAZAR IMAGEN
                             </Text>
                         </TouchableOpacity>
                     </View>
                 : <Text>No me haz dado permisos para mostrar la foto</Text>
                 }
-            </View>
+            </>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
-    },
-    camarabody:{
-        height:500
+        backgroundColor: 'lightgrey',
     },
     image:{
-        height:200
+        height:300, 
+        width:"100%",
+        alignContent:"center",
+        marginVertical:10
+    },
+    iconocamara:{
+        height:50,
+        width:50
+    },
+    text:{
+        height:50,
+        alignItems: 'center',
+        margin:20
+        
+
     }
 })
 
