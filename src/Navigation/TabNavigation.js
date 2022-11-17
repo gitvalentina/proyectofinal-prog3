@@ -1,6 +1,6 @@
-import {View, Text } from 'react-native'
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
+import {View, Text } from 'react-native';
+import React from 'react';
+//import { NavigationContainer } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../Screens/Home/Home'
 import Profile from '../Screens/Profile/Profile';
