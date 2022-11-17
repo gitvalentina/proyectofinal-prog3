@@ -28,10 +28,7 @@ export default function TabNavigation (){
             
                         },
                         headerTintColor: '#fff',
-                        headerTitleStyle: {
-                            fontWeight: 'bold',
-                            
-                        },
+                        
                     }} 
 
                     
@@ -49,10 +46,12 @@ export default function TabNavigation (){
                     name = 'NewPost' 
                     component={NewPost}
                     options= {{ tabBarIcon: () =>  <MaterialIcons name="post-add" size={35} color="black" />, 
-                    title: '', 
+                    title: 'Make Your New Post', 
                     headerStyle: {
                         backgroundColor: 'brown',
-                      }}} 
+                      },
+                    headerTintColor: '#fff',
+                    }}
                 />
             </Tab.Navigator>
     )
