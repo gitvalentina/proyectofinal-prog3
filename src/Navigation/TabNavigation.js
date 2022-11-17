@@ -5,6 +5,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../Screens/Home/Home'
 import Profile from '../Screens/Profile/Profile';
 import NewPost from '../Screens/NewPost/NewPost';
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 const Tab = createBottomTabNavigator()
@@ -13,19 +16,31 @@ export default function TabNavigation (){
     return(
             <Tab.Navigator>
                 <Tab.Screen 
-                    name = 'Home' 
+                    name='Home' 
                     component={Home}
-                    options={ { headerShown: false } } 
+                    options= {{ tabBarIcon: () => <FontAwesome name="home" size={35} color="black" />, 
+                    title: '', 
+                    headerStyle: {
+                        backgroundColor: 'brown',
+                      }}} 
                 />
                 <Tab.Screen 
                     name = 'Profile' 
                     component={Profile}
-                    options={ { headerShown: false } } 
+                    options= {{ tabBarIcon: () => <MaterialCommunityIcons name="face-woman-profile" size={35} color="black" />, 
+                    title: '', 
+                    headerStyle: {
+                        backgroundColor: 'brown',
+                      }}}  
                 />
                 <Tab.Screen 
                     name = 'NewPost' 
                     component={NewPost}
-                    options={ { headerShown: false } } 
+                    options= {{ tabBarIcon: () =>  <MaterialIcons name="post-add" size={35} color="black" />, 
+                    title: '', 
+                    headerStyle: {
+                        backgroundColor: 'brown',
+                      }}} 
                 />
             </Tab.Navigator>
     )

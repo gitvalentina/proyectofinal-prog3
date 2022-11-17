@@ -14,7 +14,7 @@ class NewPost extends Component {
             }
         }
     
-    enviarPost(description){
+    enviarPost(){
         db.collection('posts').add({
             owner:auth.currentUser.email,
             createdAt: Date.now(),
@@ -28,8 +28,8 @@ class NewPost extends Component {
                 text:'',
                 photo:'',
                 showCamera: true
-                
             })
+            this.props.screenprops.navigation.navigate("Home")
         })
         .catch((err)=> console.log(err))
     }
