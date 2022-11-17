@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         flex:1,
         marginTop:20,
         paddingHorizontal: 10,
-        backgroundColor:"rgba(0, 0, 0, 0.6)",
+        backgroundColor:"lightgray",
         height:"100%",
     }, 
     input: {

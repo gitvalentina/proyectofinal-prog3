@@ -15,7 +15,9 @@ class Home extends Component{
     }
     componentDidMount(){
         db.collection('posts')
-        .orderBy("createdAt", "desc").onSnapshot(
+        .orderBy("createdAt", "desc")
+        .limit(5)
+        .onSnapshot(
             (docs)=>{ //hacemos una llamada con db.collection a nuestra base d datos en la coleccion posts y on snap trae todo
             let publicaciones = [];
             docs.forEach(doc=>{
@@ -28,10 +30,6 @@ class Home extends Component{
                 info: publicaciones
             })
         })
-        
-    }
-    NewPost(){
-        this.props.screenprops.navigation.navigate("NewPost")
     }
     Buscador(){
         this.props.screenprops.navigation.navigate("Buscador")
@@ -43,11 +41,8 @@ class Home extends Component{
             { this.state.cargado == false?  <ActivityIndicator size="large" color="black" />:
             <View style={styles.container1}>
                  <View style={styles.container2}> 
-                 <TouchableOpacity  onPress={()=> this.NewPost()} style={styles.image}>
-                    <FontAwesomeIcon icon={ faPlus } />
-                </TouchableOpacity>
-                <TouchableOpacity  onPress={()=> this.Buscador()} style={styles.image}>
-                    <FontAwesomeIcon icon={ faSearch } />
+                <TouchableOpacity  onPress={()=> this.Buscador()} >
+                    <FontAwesomeIcon style={styles.image} icon={ faSearch } />
                 </TouchableOpacity>
                 </View>
                 <FlatList //toma ese estado, le genera una key a cada item y renderiza x cada uno un componente post..
@@ -57,7 +52,8 @@ class Home extends Component{
                 renderItem={(
                     {item})=>
                     <Post 
-                    navigation= {this.props.navigation} id= {item.id} 
+                    navigation= {this.props.navigation} 
+                    id= {item.id} 
                     data={item.data} /> 
                 }  
                 />
@@ -74,15 +70,18 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor:"lightgray",
         height:"100%",
+        
       },
       container2:{
         flex:3,
         textAlign:"center",
-        justifyContent:"space-around",
-        flexDirection:"row"
+        paddingStart:10,
+        paddingTop:20,
+        flexDirection: 'row'
       },
       image:{
-        alignItems:"center"
+        height:20,
+        width:20
       }
 })
 export default Home;

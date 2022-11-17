@@ -62,22 +62,23 @@ class Post extends Component {
 
     render(){
         return( //primero <Image>
-            <View>
-                <View>
-                    <Text> {this.props.data.description} </Text>
-                    <Text> Cantidad de Likes: {this.state.cantidadDeLikes} </Text>
+            <View style={styles.posteo}>
+                <Image style={styles.image} source={this.props.data.photo} resizeMode={'contain'}/>
+                <View style={styles.data}>
+                    <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}> {this.props.data.description} </Text>
+                    <Text style={{fontSize:16, paddingBottom:8}}> Cantidad de Likes: {this.state.cantidadDeLikes} </Text>
                     { this.state.likeStart ? //si es true nos presenta el boton unlike y sino el like 
                         <TouchableOpacity onPress={ ()=> this.unlike() }>
-                            <FontAwesome name='heart' color= 'black'  size= {16} />
+                            <FontAwesome name='heart' color= 'black'  size= {20} />
                         </TouchableOpacity>
                         : 
                         <TouchableOpacity onPress={ ()=> this.like() }>
-                            <FontAwesome name='heart-o' color= 'red'  size= {16} />
+                            <FontAwesome name='heart-o' color= 'red'  size= {20} />
                         </TouchableOpacity>
                     }
                 </View>
                 <View>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', 
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Comentarios', 
                     {id: this.props.id})}> 
                         <Text>Agregar comentario</Text> 
                     </TouchableOpacity>
@@ -88,7 +89,23 @@ class Post extends Component {
 }
 
 const styles = StyleSheet.create({
-
+    image:{
+        height: 300,
+        width: 400,
+        resizeMode: 'contain',
+        margin:15,
+        borderWidth:'radius'
+      },
+      posteo:{
+        marginBottom: 60,
+        backgroundColor: 'lightgrey',
+        alignItems:'center'
+      },
+      data:{
+        margin:10,
+        backgroundColor: 'gray',
+        alignItems:'center'
+      }
 })
 
 export default Post;
