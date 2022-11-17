@@ -48,6 +48,12 @@ class Profile extends Component {
         auth.signOut()
         this.props.navigation.navigate('Login')
     }
+
+    deletePost(){
+        db.collection('posts').remove({
+            
+        })
+    }
       
     render() {
         return (
@@ -55,28 +61,29 @@ class Profile extends Component {
            <View>
                 <>
                 <View style={styles.container}>
-                    <Text> Perfil {this.state.datosPerfil.username} </Text>
+                    <Text > Perfil de {this.state.datosPerfil.username} </Text>
                     <Text> Bienvenido: {auth.currentUser.email} </Text>
-                    <Text> Foto de Perfil: me falta</Text>
+                    <Text> Foto de Perfil: </Text>
                     <Text> Bio: tendria q rellenarse </Text> 
                     <Text> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
                     <Text> Fecha de último login: {auth.currentUser.metadata.lastSignInTime} </Text>
-                    <Text> Ha subido un total de {this.state.post.length} posteos </Text>
-                    <Text> Posteos: </Text>
-                    {this.state.post.length >= 1 ? 
+                    {this.state.post.length == 0 ? 
+                        <Text>Aun no hay posteos</Text>
+                        :
                         <View style={styles.container}>
+                            <Text> Ha subido un total de {this.state.post.length} posteos </Text>
                             <FlatList 
                                 data = {this.state.post}
                                 keyExtractor={(data)=> data.id.toString()}
-                                renderItem = {(item) => <Post data={item.item.data} id={item.item.id} />} 
+                                renderItem = {(item) => <Post data={item.data} id={item.item.id} />} 
                             />
                         </View>
-                        :
-                        <Text>Aun no hay posteos</Text>
-                        }
+                    }
                 </View>
                 </>      
-                    <Text> Borrar Posteos</Text>     
+                        <TouchableOpacity>
+                            <Text> Borrar Posteos</Text>    
+                        </TouchableOpacity>                         
                         <TouchableOpacity onPress={() => this.signOut()} style={styles.touchable} >
                             <Text>Cerrar sesión</Text>
                         </TouchableOpacity>
@@ -91,14 +98,14 @@ const styles = StyleSheet.create({
     touchable:{
         textAlign:"center",
         padding: 5,
-        backgroundColor: "red",
+        backgroundColor: "rgba(176, 145, 0, 0.9)",
         marginBottom: 10,
         borderRadius:4,
         paddingHorizontal: 10,
         paddingVertical: 6,
         borderStyle:"solid",
         borderWidth:1,
-        borderColor:"red"
+        borderColor:"rgba(176, 145, 0, 0.9)"
     },
     texto:{
         color:"#FFF"
@@ -106,7 +113,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop:20,
         paddingHorizontal: 10,
-        backgroundColor:"rgba(0, 0, 0, 0.6)",
+        backgroundColor:"lightgray",
         height:"100%",
     }
 })
