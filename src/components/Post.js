@@ -50,12 +50,12 @@ class Post extends Component {
         .collection('posts')
         .doc(this.props.id)
         .update({
-            likes:firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
+            likes :firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
         .then(()=>{
             this.setState({
                 likeStart: false,
-                cantidadDeLikes: this.state.cantidadDeLikes - 1
+                cantidadDeLikes: this.state.cantidadDeLikes -1
             })
         })
         .catch(err => console.log(err)) 
@@ -79,9 +79,9 @@ class Post extends Component {
                     }
                 </View>
                 <View>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Comentarios', 
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Comentario', 
                     {id: this.props.id})}> 
-                        <Text>Agregar comentario</Text> 
+                        <Text>Ver Comentarios</Text> 
                     </TouchableOpacity>
                 </View> 
             </View>
