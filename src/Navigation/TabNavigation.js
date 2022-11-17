@@ -37,10 +37,12 @@ export default function TabNavigation (){
                     name = 'Profile' 
                     component={Profile}
                     options= {{ tabBarIcon: () => <MaterialCommunityIcons name="face-woman-profile" size={35} color="black" />, 
-                    title: '', 
+                    title: 'My Profile', 
                     headerStyle: {
                         backgroundColor: 'brown',
-                      }}}  
+                      },
+                    headerTintColor: '#fff',
+                    }}  
                 />
                 <Tab.Screen 
                     name = 'NewPost' 
