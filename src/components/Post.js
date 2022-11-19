@@ -11,7 +11,7 @@ class Post extends Component {
         this.state = {
             likeStart: false, //su estado arranca en false
             cantidadDeLikes: this.props.data.likes.length, //length del array de likes.
-        
+            cantidadDeComentarios: this.props.data.comentarios
         }
     }
     componentDidMount(){
@@ -36,12 +36,12 @@ class Post extends Component {
             //auth.current... nos trae el email del usuario logueado; 1ro importar auth
             //likes: nos devuelve un obj literal y le aclaramos la prop que queremos acualizar; por cada like pasar nuestro email de usuario
         })
-        .then(()=>{ //promesa 
+        .then(()=> //promesa 
             this.setState({
-                likeStart: true,
-                cantidadDeLikes: this.state.cantidadDeLikes +1 
+                cantidadDeLikes: this.state.cantidadDeLikes +1,
+                likeStart: true, 
             })
-        })
+        )
         .catch(err => console.log(err))
     }
 
@@ -52,12 +52,12 @@ class Post extends Component {
         .update({
             likes :firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
-        .then(()=>{
+        .then(()=>
             this.setState({
+                cantidadDeLikes: this.state.cantidadDeLikes -1,
                 likeStart: false,
-                cantidadDeLikes: this.state.cantidadDeLikes -1
             })
-        })
+        )
         .catch(err => console.log(err)) 
     }
 
@@ -67,9 +67,12 @@ class Post extends Component {
                 <Image style={styles.image} source={this.props.data.photo} resizeMode={'contain'}/>
                 <View style={styles.data}>
                     <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}> {this.props.data.description} </Text>
-                    <Text style={{fontSize:16, paddingBottom:8}}> Cantidad de Likes: {this.state.cantidadDeLikes} </Text>
+                    <Text style={{fontSize:16, paddingBottom:8}} onPress={()=> this.props.navigation.navigate('ProfileUser',  { email: this.props.data.owner })} >
+                        {this.props.data.owner}
+                    </Text>
+                    <Text style={{fontSize:16, paddingBottom:8}}> Likes: {this.state.cantidadDeLikes} </Text>
                     { this.state.likeStart ? //si es true nos presenta el boton unlike y sino el like 
-                        <TouchableOpacity onPress={ ()=> this.unlike() }>
+                        <TouchableOpacity onPress={ ()=> this.unLike() }>
                             <FontAwesome name='heart' color= 'black'  size= {20} />
                         </TouchableOpacity>
                         : 
@@ -78,12 +81,12 @@ class Post extends Component {
                         </TouchableOpacity>
                     }
                 </View>
-                <View>
+                    
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Comentario', 
-                    {id: this.props.id})}> 
+                    {id: this.props.data.id})}> 
                         <Text>Ver Comentarios</Text> 
                     </TouchableOpacity>
-                </View> 
+                
             </View>
         ) //obj literal de clave-valor para darle un id al comentario y identificarlo
     }
