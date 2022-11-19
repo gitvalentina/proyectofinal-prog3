@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native';
+import {View, StyleSheet, FlatList, TouchableOpacity, Text, Image} from 'react-native';
 import {auth, db} from '../../firebase/config';
 import Post from '../../components/Post';
 import {LoginScreen} from '../Login/Login';
@@ -23,6 +23,7 @@ class Profile extends Component {
             id: doc.id,
             datosPerfil: doc.data()
           })) 
+          
         })
 
         //para mostrar sus posts
@@ -64,9 +65,13 @@ class Profile extends Component {
                     <Text > Perfil de {this.state.datosPerfil.username} </Text>
                     <Text> Bienvenido: {auth.currentUser.email} </Text>
                     <Text> Foto de Perfil: </Text>
-                    <Text> Bio: tendria q rellenarse </Text> 
+                    <Image
+                      style={styles.foto}
+                      source={{ uri: this.state.datosPerfil.photo }}
+                      resizeMode='contain'
+                    />
                     <Text> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
-                    <Text> Fecha de último login: {auth.currentUser.metadata.lastSignInTime} </Text>
+                    
                     {this.state.post.length == 0 ? 
                         <Text>Aun no hay posteos</Text>
                         :
@@ -115,6 +120,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor:"lightgray",
         height:"100%",
+    },
+    foto:{
+        width:250,
+        height:250
     }
 })
 
