@@ -29,7 +29,7 @@ class Profile extends Component {
         //para mostrar sus posts
         db
         .collection('posts')
-        .where("user", "==", auth.currentUser.email)
+        .where("users", "==", auth.currentUser.email)
         .onSnapshot((docs)=>{
             let posts =[]
             docs.forEach((doc)=> {
