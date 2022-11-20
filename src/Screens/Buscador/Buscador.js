@@ -1,6 +1,7 @@
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import React, { Component } from 'react';
 import { auth, db } from '../../firebase/config';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 //base del otro proyecto 
 class Buscador extends Component{ //capturar valores
@@ -13,9 +14,9 @@ class Buscador extends Component{ //capturar valores
     }
 
     buscar(text){
-    
+    console.log(text)
         this.setState({valorInput:text})
-        db.collection('users').where('owner', '==', text).onSnapshot(
+        db.collection('users').where('username', '==', text).onSnapshot(
             docs => {
                 let posts = [];
                 docs.forEach( doc => {
@@ -26,21 +27,21 @@ class Buscador extends Component{ //capturar valores
                     this.setState({
                         posts: posts,
                     })
-                })
-                
+                })   
             }
         )
     }
+
 
     render(){
         return( <View>
             <TextInput
                 style={styles.input}
-                placeholder='Search Users'
+                placeholder='Search Users by Username'
                 keyboardType="default"
-                onChangeText={text => this.buscar(text)}
+                onChangeText={text => this.setState({valorInput : text})}
                 value={this.state.valorInput}/>
-                <TouchableOpacity style={styles.touchableL} onPress={()=> this.buscar()} >
+                <TouchableOpacity style={styles.touchableL} onPress={()=> this.buscar(this.state.valorInput)} >
                     <Text>Buscar</Text> 
                 </TouchableOpacity>
                 
@@ -48,8 +49,8 @@ class Buscador extends Component{ //capturar valores
                             data={this.state.posts}
                             keyExtractor={ onePost => onePost.id.toString()}
                             renderItem={ ({item})  =><TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
-                                 { this.state.valorInput == item.data.owner ?
-                         <Text>{item.data.owner}</Text> : <Text>no exsiste el usuario</Text> }
+                                 { this.state.valorInput == item.data.username ?
+                         <Text>{item.data.username}</Text > : <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}>No se ha encontrado ningun usuario con ese nombre</Text> }
                             </TouchableOpacity> }
                         /> 
             </View>
