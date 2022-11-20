@@ -1,7 +1,7 @@
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import React, { Component } from 'react';
 import { auth, db } from '../../firebase/config';
-import { text } from '@fortawesome/fontawesome-svg-core';
+
 
 //base del otro proyecto 
 class Buscador extends Component{ //capturar valores
@@ -15,6 +15,7 @@ class Buscador extends Component{ //capturar valores
 
     buscar(text){
     console.log(text)
+    console.log(this.state.valorInput)
         this.setState({valorInput:text})
         db.collection('users').where('username', '==', text).onSnapshot(
             docs => {
@@ -46,13 +47,17 @@ class Buscador extends Component{ //capturar valores
                 </TouchableOpacity>
                 
                 <FlatList 
-                            data={this.state.posts}
-                            keyExtractor={ onePost => onePost.id.toString()}
-                            renderItem={ ({item})  =><TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
-                                 { this.state.valorInput == item.data.username ?
-                         <Text>{item.data.username}</Text > : <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}>No se ha encontrado ningun usuario con ese nombre</Text> }
-                            </TouchableOpacity> }
-                        /> 
+                    data={this.state.posts}
+                    keyExtractor={ onePost => onePost.id.toString()}
+                    renderItem={({item}) => 
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
+                            { this.state.valorInput == item.data.username ?
+                                <Text>{item.data.username}</Text > : 
+                                <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}>No se ha encontrado ningun usuario con ese nombre</Text> 
+                            }
+                        </TouchableOpacity> 
+                    }
+                /> 
             </View>
             )
     
