@@ -56,7 +56,7 @@ class Camara extends Component {
     rechazarImagen(){
         this.setState({
             fotoUri: "",
-            mostrarCamara: true
+            showCamara: true
         })
     }
 
@@ -91,13 +91,8 @@ class Camara extends Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                :   <>
-                        <Text style={{textAlign: 'center', fontSize:15, fontWeight: 'bold'}}> Foto Eliminada </Text>
-                        <TouchableOpacity style={styles.text } onPress={ () => this.tomarFoto()}>
-                            <Text style={{fontSize:30, fontWeight: 'bold', backgroundColor:'white', padding:10 }}> Quieres tomar otra foto? <FontAwesomeIcon  icon={ faCamera } /></Text>
-                            
-                        </TouchableOpacity> 
-                    </>
+                :   <Text style={{textAlign: 'center', fontSize:25, fontWeight: 'bold'}}> No me diste los permisos </Text>
+                    
                 
                 }
             </>
