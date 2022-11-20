@@ -57,11 +57,11 @@ class NewPost extends Component {
                         />
                         {
                             this.state.text === '' ? 
-                                <TouchableOpacity style={styles.touchablegray}    >
+                                <TouchableOpacity style={styles.touchableL}    >
                                     <Text style={styles.texto}>Crea tu posteo</Text>
                                 </TouchableOpacity>
                                 :
-                                <TouchableOpacity style={styles.touchable}   onPress={()=> this.enviarPost()} >
+                                <TouchableOpacity style={styles.touchableL}   onPress={()=> this.enviarPost()} >
                                     <Text style={styles.texto}>Crea tu posteo</Text>
                                 </TouchableOpacity>
                         }
@@ -80,15 +80,37 @@ const styles = StyleSheet.create({
         backgroundColor:"lightgray",
         height:"100%",
     }, 
-    input: {
-        height: 20,
-        borderWidth:1,
+    texto:{
+        fontSize:15,
+        textAlign:'center'
+    },
+    input:{
+        height: 30,
+        width:300,
+        alignSelf:'center',
+        borderWidth:3,
+        backgroundColor:"white",
         borderStyle:"solid",
-        borderColor: "#ccc",
+        borderColor: "rgba(176, 145, 0, 0.9)",
         borderRadius:6,
         paddingHorizontal:10,
         paddingVertical:15,
         marginVertical:10,
+    }, 
+    touchableL:{
+        textAlign:"center",
+        width:150,
+        height:20,
+        alignSelf:'center',
+        marginBottom: 10,
+        borderRadius:4,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderStyle:"solid",
+        borderWidth:1,
+        borderColor:"rgba(84, 78, 73, 0.9)",
+        justifyContent: "center",
+        backgroundColor:"rgba(176, 145, 0, 0.9)"
     },
 })
 

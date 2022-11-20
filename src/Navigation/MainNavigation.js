@@ -5,8 +5,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigation from './TabNavigation';
 import LoginScreen from '../Screens/Login/Login'
 import Register from "../Screens/Register/Register";
-import Comentario from '../Screens/Comentario/Comentario' 
+import Comentario from '../Screens/Comentario/Comentario'; 
 import ProfileUser from '../Screens/ProfileUser/ProfileUser';
+import Buscador from '../Screens/Buscador/Buscador';
+
 
 const Stack = createNativeStackNavigator() //guardar en una variable la ejecucion de cnsn
 
@@ -32,6 +34,7 @@ function MainNavigation (){
                 <Stack.Screen name="MainNavigation" component={ MainNavigation } options= {{ headerShown : false}}/>
                 <Stack.Screen name="Comentario" component={Comentario} options={ { headerShown: false } }  />
                 <Stack.Screen name="ProfileUser" component={ProfileUser} />
+                <Stack.Screen name="Buscador" component={Buscador} />
             </Stack.Navigator>
         </NavigationContainer>
     )

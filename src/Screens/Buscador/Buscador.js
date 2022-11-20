@@ -35,7 +35,8 @@ class Buscador extends Component{ //capturar valores
 
 
     render(){
-        return( <View>
+        return( 
+        <View>
             <TextInput
                 style={styles.input}
                 placeholder='Search Users by Username'
@@ -50,7 +51,7 @@ class Buscador extends Component{ //capturar valores
                     data={this.state.posts}
                     keyExtractor={ onePost => onePost.id.toString()}
                     renderItem={({item}) => 
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
+                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('ProfileUser')}>
                             { this.state.valorInput == item.data.username ?
                                 <Text>{item.data.username}</Text > : 
                                 <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}>No se ha encontrado ningun usuario con ese nombre</Text> 
@@ -58,7 +59,7 @@ class Buscador extends Component{ //capturar valores
                         </TouchableOpacity> 
                     }
                 /> 
-            </View>
+        </View>
             )
     
     }

@@ -35,7 +35,7 @@ class Comentario extends Component {
         })
         .then(()=>{
             this.setState({
-                nuevoComentario:''
+                nuevoComentario:'text'
             })
         })
         .catch(err => console.log(err)) 
@@ -71,7 +71,7 @@ class Comentario extends Component {
                 />
                  {this.state.nuevoComentario === '' ? <></>
                     :
-                    <TouchableOpacity onPress={()=> this.newComment(this.state.comentario, this.state.id)}>
+                    <TouchableOpacity onPress={()=> this.newComment(this.state.nuevoComentario, this.state.id)}>
                         <Text> Agregar Comentario </Text>
                     </TouchableOpacity>
                 }
