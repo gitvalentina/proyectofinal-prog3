@@ -14,9 +14,7 @@ const Tab = createBottomTabNavigator()
 
 export default function TabNavigation (){
     return(
-            <Tab.Navigator
-                screenOptions={{tabBarShowLabel: false}}
-            >
+            <Tab.Navigator screenOptions={{tabBarShowLabel: false}}>
                 <Tab.Screen 
                     name='Home' 
                     component={Home}
@@ -25,13 +23,9 @@ export default function TabNavigation (){
                         title: 'HOME', 
                         headerStyle: {
                             backgroundColor: 'brown',
-            
                         },
                         headerTintColor: '#fff',
-                        
-                    }} 
-
-                    
+                    }}    
                 />
                 <Tab.Screen 
                     name = 'Profile' 
