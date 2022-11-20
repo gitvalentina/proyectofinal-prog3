@@ -11,7 +11,6 @@ class Comentario extends Component {
             //lo que le va a llegar a comentarios desde post
             nuevoComentario:'', //lo que escribe el usuario
             id:this.props.route.params.id, //busca el id que coincide con los coments
-            data:{},// la data de los posts con el id que buscamos
             comentarios: [] //el array con comentarios anteriores
         }
     }
@@ -45,11 +44,11 @@ class Comentario extends Component {
 
     render() {
         return (
-            <View>
-                <Text> Comentarios </Text>
+            <View style={styles.container}>
+                <Text style={styles.texto3}> Comentarios </Text>
                 {this.state.comentarios.length === 0 ?
                     <View > 
-                        <Text> Aún no hay comentarios. Que quieres decir? </Text>  
+                        <Text style={{color:"black", textAlign:"center"}}> Aún no hay comentarios. Que quieres decir? </Text>  
                     </View>
                     :
                     <FlatList
@@ -72,7 +71,7 @@ class Comentario extends Component {
                 />
                  {this.state.nuevoComentario === '' ? <></>
                     :
-                    <TouchableOpacity onPress={()=> this.newComment(this.state.nuevoComentario, this.state.id)}>
+                    <TouchableOpacity onPress={()=> this.newComment(this.state.comentario, this.state.id)}>
                         <Text> Agregar Comentario </Text>
                     </TouchableOpacity>
                 }
@@ -82,10 +81,32 @@ class Comentario extends Component {
 }
 
 const styles = StyleSheet.create({
-    input: {
-        borderWidth:1,
-        height:32
-      }
+    container:{
+        flex:1,
+        justifyContent:'flex-start',
+        marginTop:40,
+        paddingTop:100,
+        paddingHorizontal: 10,
+        height:"100%",
+    
+        },
+    input:{
+        height: 50,
+        borderWidth:3,
+        backgroundColor:"white",
+        borderStyle:"solid",
+        borderColor: "rgba(176, 145, 0, 0.9)",
+        borderRadius:6,
+        paddingHorizontal:10,
+        paddingVertical:15,
+        marginVertical:10,
+        justifyContent: 'flex-end'
+    }, 
+    texto3:{
+        color:'black',
+        fontSize: 40,
+        textAlign: 'center'
+    }
 })
 
 export default Comentario;
