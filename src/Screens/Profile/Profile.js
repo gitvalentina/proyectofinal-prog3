@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity, Text, Image} from 'react-native';
 import {auth, db} from '../../firebase/config';
 import Post from '../../components/Post';
-import {LoginScreen} from '../Login/Login';
+import LoginScreen from '../Login/Login';
+import MyPost from '../../components/MyPost';
 
 class Profile extends Component {
     constructor(props){
@@ -27,9 +28,8 @@ class Profile extends Component {
         })
 
         //para mostrar sus posts
-        db
-        .collection('posts')
-        .where("users", "==", auth.currentUser.email)
+        db.collection('posts')
+        .where("owner", "==", auth.currentUser.email)
         .onSnapshot((docs)=>{
             let posts =[]
             docs.forEach((doc)=> {
@@ -50,17 +50,11 @@ class Profile extends Component {
         this.props.navigation.navigate('Login')
     }
 
-    deletePost(){
-        db.collection('posts').remove({
-            
-        })
-    }
-      
     render() {
+        console.log(this.state.post)
         return (
 
-           <View>
-                <>
+           <> 
                 <View style={styles.container}>
                     <Text > Perfil de {this.state.datosPerfil.username} </Text>
                     <Text> Bienvenido: {auth.currentUser.email} </Text>
@@ -80,19 +74,17 @@ class Profile extends Component {
                             <FlatList 
                                 data = {this.state.post}
                                 keyExtractor={(data)=> data.id.toString()}
-                                renderItem = {(item) => <Post data={item.data} id={item.item.id} />} 
+                                renderItem = {(item) => <MyPost data={item} id={item.item.id} />} 
                             />
                         </View>
                     }
-                </View>
-                </>      
-                        <TouchableOpacity>
-                            <Text> Borrar Posteos</Text>    
-                        </TouchableOpacity>                         
+                  
+                      
                         <TouchableOpacity onPress={() => this.signOut()} style={styles.touchable} >
                             <Text>Cerrar sesión</Text>
                         </TouchableOpacity>
-            </View>
+                </View>  
+            </>
             
            
         )
@@ -115,12 +107,12 @@ const styles = StyleSheet.create({
     texto:{
         color:"#FFF"
     },
-    container: {
+    /* container: {
         marginTop:20,
         paddingHorizontal: 10,
         backgroundColor:"lightgray",
         height:"100%",
-    },
+    }, */
     foto:{
         width:250,
         height:250
