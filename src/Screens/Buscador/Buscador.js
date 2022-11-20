@@ -8,36 +8,90 @@ class Buscador extends Component{ //capturar valores
         super(props) //componente hijo de Home
         this.state={
             valorInput:'',
+            posts:[]
         }
     }
 
-
-    prevenirRefresh(event){
-        event.preventDefault(); // detiene el envío del formulario 
-    }
-
-    controlarCambiosDelInput(event){ //obtiene el valor ingresado en el input y actualiza el estado interno del componente.
-        this.setState({ // Es un método asincrónico: 
-            
-            valorInput /*vacio en el constructor */: event.target.value  // target identifica el campo objetivo y la prop value obtiene el valor ingresado
-
-        }, ()=> this.props.metodoQueBusca(this.state.valorInput)) // recibe un callback como segundo parámetro que se ejecuta cuando el estado se actualizó. ARROW FUNCTION
-    }
-    reset(){
-        this.props.metodoQueResetea();
-        this.setState({valorInput: ''})
+    buscar(text){
+    
+        this.setState({valorInput:text})
+        db.collection('users').where('owner', '==', text).onSnapshot(
+            docs => {
+                let posts = [];
+                docs.forEach( doc => {
+                    posts.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
+                    this.setState({
+                        posts: posts,
+                    })
+                })
+                
+            }
+        )
     }
 
     render(){
-        return(
-            <form onSubmit={(event)=> this.prevenirRefresh(event)}>
-                {<input type= "text" onChange={(event)=> this.controlarCambiosDelInput(event)}  placeholder="Buscar" value={this.state.valorInput} /> } {/*para que se sincronize con la info que estamos actualizando*/}
-                <button onClick={()=>this.reset()}>reset</button>
-            </form>
+        return( <View>
+            <TextInput
+                style={styles.input}
+                placeholder='Search Users'
+                keyboardType="default"
+                onChangeText={text => this.buscar(text)}
+                value={this.state.valorInput}/>
+                <TouchableOpacity style={styles.touchableL} onPress={()=> this.buscar()} >
+                    <Text>Buscar</Text> 
+                </TouchableOpacity>
+                
+                <FlatList 
+                            data={this.state.posts}
+                            keyExtractor={ onePost => onePost.id.toString()}
+                            renderItem={ ({item})  =><TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
+                                 { this.state.valorInput == item.data.owner ?
+                         <Text>{item.data.owner}</Text> : <Text>no exsiste el usuario</Text> }
+                            </TouchableOpacity> }
+                        /> 
+            </View>
             )
-        }
+    
+    }
 }
 //el evento onChange: para obtener la info que el usuario ingresa en el campo. el estado del componente se actualizará cada vez que el usuario ingrese un carácter.
+const styles=StyleSheet.create({
+    input:{
+        height: 30,
+        width:300,
+        alignSelf:'center',
+        borderWidth:3,
+        backgroundColor:"white",
+        borderStyle:"solid",
+        borderColor: "rgba(176, 145, 0, 0.9)",
+        borderRadius:6,
+        paddingHorizontal:10,
+        paddingVertical:15,
+        marginVertical:10,
+    }, 
+    image:{
+        height:20,
+        width:20
+      },
+      touchableL:{
+        textAlign:"center",
+        width:150,
+        height:20,
+        alignSelf:'center',
+        marginBottom: 10,
+        borderRadius:4,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderStyle:"solid",
+        borderWidth:1,
+        borderColor:"rgba(84, 78, 73, 0.9)",
+        justifyContent: "center",
+        backgroundColor:"rgba(176, 145, 0, 0.9)"
+    },
+})
 
 export default Buscador;
 

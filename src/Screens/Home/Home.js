@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import { StyleSheet, View, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import {auth, db} from '../../firebase/config';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Post from '../../components/Post';
 import Buscador from '../Buscador/Buscador';
 
@@ -35,28 +33,6 @@ class Home extends Component{
         })
     }
 
-    metodoQueBusca(nombre){
-        if(nombre !== ''){ {/*esto es porque cuando borraba y ecribia se me salia y entonces si el input esta vacio no hago el fetch */}
-            
-            fetch(`${this.state.valorInput}`)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({resultadosDeBusqueda: data.results})
-            })
-            .catch(e => console.log(e))
-        }
-    }
-
-    metodoQueResetea(){
-        this.setState({ // permite actualizar la información del objeto state de un componente. Cuando se modifica, se vuelve a renderizar el componente (no carga la app de cero, sino que cambia ese estado en específico)
-            resultadosDeBusqueda: [], //valor que el usuario pone en input
-            value: ''
-        })
-    }
-    //Buscador(){
-     //   this.props.screenprops.navigation.navigate("Buscador")
-   // }
-
     render(){
         return(
             <>
@@ -65,11 +41,6 @@ class Home extends Component{
             </main>
             { this.state.cargado == false?  <ActivityIndicator size="large" color="black" />:
             <View style={styles.container1}>
-                 <View style={styles.container2}> 
-                <TouchableOpacity  onPress={()=> this.Buscador()} >
-                    <FontAwesomeIcon style={styles.image} icon={ faSearch } />
-                </TouchableOpacity>
-                </View>
                 <FlatList //toma ese estado, le genera una key a cada item y renderiza x cada uno un componente post..
                 // a ese comoponente le estamos pasando a traves de la prop .data toda la info que s guarda en cada uno de los items, decalrado anteriormente en el .push de las publicaciones
                 data={this.state.info}
