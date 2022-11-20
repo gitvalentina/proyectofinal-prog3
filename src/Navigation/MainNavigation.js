@@ -30,7 +30,7 @@ function MainNavigation (){
                     options={ { headerShown: false } } 
                 />
                 <Stack.Screen name="MainNavigation" component={ MainNavigation } options= {{ headerShown : false}}/>
-                <Stack.Screen name="Comentario" component={Comentario} />
+                <Stack.Screen name="Comentario" component={Comentario} options={ { headerShown: false } }  />
                 <Stack.Screen name="ProfileUser" component={ProfileUser} />
             </Stack.Navigator>
         </NavigationContainer>
