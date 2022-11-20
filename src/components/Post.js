@@ -10,13 +10,13 @@ class Post extends Component {
         super(props)
         this.state = {
             likeStart: false, //su estado arranca en false
-            cantidadDeLikes: this.props.data.likes.length, //length del array de likes.
-            cantidadDeComentarios: this.props.data.comentarios
+            cantidadDeLikes: this.props.data?.likes.length, //length del array de likes.
+            cantidadDeComentarios: this.props.data?.comentarios
         }
     }
     componentDidMount(){
         //chequear si esta logueado preguntando en el if si "myLike" incluye al usuario logueado
-        let myLike = this.props.data.likes.includes(auth.currentUser.email)
+        let myLike = this.props.data?.likes.includes(auth.currentUser.email)
        // Si esta logueado cambiar el estado de likeStart
         if(myLike){
             this.setState({
@@ -64,11 +64,11 @@ class Post extends Component {
     render(){
         return( //primero <Image>
             <View style={styles.posteo}>
-                <Image style={styles.image} source={this.props.data.photo} resizeMode={'contain'}/>
+                <Image style={styles.image} source={this.props.data?.photo} resizeMode={'contain'}/>
                 <View style={styles.data}>
-                    <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}> {this.props.data.description} </Text>
-                    <Text style={{fontSize:16, paddingBottom:8}} onPress={()=> this.props.navigation.navigate('ProfileUser',  { email: this.props.data.owner })} >
-                        {this.props.data.owner}
+                    <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}> {this.props.data?.description} </Text>
+                    <Text style={{fontSize:16, paddingBottom:8}} onPress={()=> this.props.navigation.navigate('ProfileUser',  { email: this.props.data?.owner })} >
+                        {this.props.data?.owner}
                     </Text>
                     <Text style={{fontSize:16, paddingBottom:8}}> Likes: {this.state.cantidadDeLikes} </Text>
                     { this.state.likeStart ? //si es true nos presenta el boton unlike y sino el like 
