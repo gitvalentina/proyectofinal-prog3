@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, View, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import {auth, db} from '../../firebase/config';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import Post from '../../components/Post';
+import Post from '../../components/Post/Post';
 import Buscador from '../Buscador/Buscador';
 
 class Home extends Component{
@@ -67,17 +67,17 @@ const styles = StyleSheet.create({
         backgroundColor:"lightgray",
         height:"100%",
         
-      },
-      container2:{
+    },
+        container2:{
         flex:3,
         textAlign:"center",
         paddingStart:10,
         paddingTop:20,
         flexDirection: 'row'
-      },
-      image:{
+    },
+        image:{
         height:20,
         width:20
-      }
+    }
 })
 export default Home;

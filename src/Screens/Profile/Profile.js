@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity, Text, Image} from 'react-native';
 import {auth, db} from '../../firebase/config';
-import Post from '../../components/Post';
-import LoginScreen from '../Login/Login';
-import MyPost from '../../components/MyPost';
+import Post from '../../components/Post/Post';
+import LoginScreen from '../../Screens/Login/Login';
+import MyPost from '../../components/MyPost/MyPost';
 
 class Profile extends Component {
     constructor(props){

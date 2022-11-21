@@ -34,7 +34,7 @@ export default function TabNavigation (){
                     title: 'My Profile', 
                     headerStyle: {
                         backgroundColor: 'brown',
-                      },
+                    },
                     headerTintColor: '#fff',
                     }}  
                 />
@@ -45,7 +45,7 @@ export default function TabNavigation (){
                     title: 'Make Your New Post', 
                     headerStyle: {
                         backgroundColor: 'brown',
-                      },
+                    },
                     headerTintColor: '#fff',
                     }}
                 />

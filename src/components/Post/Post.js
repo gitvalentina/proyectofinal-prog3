@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import {auth, db} from '../firebase/config';
+import {auth, db} from '../../firebase/config';
 import firebase from 'firebase';
 import {FontAwesome} from '@expo/vector-icons';
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 import {Camera} from 'expo-camera';
- import {storage} from '../firebase/config';
- import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import {storage} from '../../firebase/config';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
