@@ -31,10 +31,23 @@ function MainNavigation (){
                     component={TabNavigation}
                     options={ { headerShown: false } } 
                 />
-                <Stack.Screen name="MainNavigation" component={ MainNavigation } options= {{ headerShown : false}}/>
-                <Stack.Screen name="Comentario" component={Comentario} options={ { headerShown: false } }  />
-                <Stack.Screen name="ProfileUser" component={ProfileUser} />
-                <Stack.Screen name="Buscador" component={Buscador} />
+                <Stack.Screen 
+                    name="MainNavigation" 
+                    component={ MainNavigation } 
+                    options= {{ headerShown : false}}
+                />
+                <Stack.Screen 
+                    name="Comentario" 
+                    component={Comentario} 
+                />
+                <Stack.Screen 
+                    name="ProfileUser" 
+                    component={ProfileUser} 
+                />
+                <Stack.Screen 
+                    name="Buscador" 
+                    component={Buscador} 
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )
