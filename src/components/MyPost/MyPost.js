@@ -72,6 +72,7 @@ class MyPost extends Component {
     render(){
         console.log('estamos aca')
         console.log(this.props.data.item.data)
+        console.log(this.props)
         return( //primero <Image>
         
             <View style={styles.posteo}>
@@ -95,7 +96,7 @@ class MyPost extends Component {
                 </View>
                     
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Comentario', 
-                    {id: this.props.data.id})}> 
+                    {id: this.props.id})}> 
                         <Text>Ver Comentarios</Text> 
                     </TouchableOpacity>
                 
