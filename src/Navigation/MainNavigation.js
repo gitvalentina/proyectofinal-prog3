@@ -8,6 +8,7 @@ import Register from "../Screens/Register/Register";
 import Comentario from '../Screens/Comentario/Comentario'; 
 import ProfileUser from '../Screens/ProfileUser/ProfileUser';
 import Buscador from '../Screens/Buscador/Buscador';
+import Profile from '../Screens/Profile/Profile';
 
 
 const Stack = createNativeStackNavigator() //guardar en una variable la ejecucion de cnsn
@@ -31,23 +32,10 @@ function MainNavigation (){
                     component={TabNavigation}
                     options={ { headerShown: false } } 
                 />
-                <Stack.Screen 
-                    name="MainNavigation" 
-                    component={ MainNavigation } 
-                    options= {{ headerShown : false}}
-                />
-                <Stack.Screen 
-                    name="Comentario" 
-                    component={Comentario} 
-                />
-                <Stack.Screen 
-                    name="ProfileUser" 
-                    component={ProfileUser} 
-                />
-                <Stack.Screen 
-                    name="Buscador" 
-                    component={Buscador} 
-                />
+                <Stack.Screen name="MainNavigation" component={ MainNavigation } options= {{ headerShown : false}}/>
+                <Stack.Screen name="Comentario" component={Comentario} options={ { headerShown: false } }  />
+                <Stack.Screen name="ProfileUser" component={ProfileUser} />
+                <Stack.Screen name="Buscador" component={Buscador} />
             </Stack.Navigator>
         </NavigationContainer>
     )

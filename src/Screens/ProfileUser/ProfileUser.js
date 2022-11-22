@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native';
 import {auth, db} from '../../firebase/config';
-import Post from "../../components/Post";
+import Post from "../../components/Post/Post";
 
 class ProfileUser extends Component {
     constructor(props){
@@ -20,14 +20,14 @@ class ProfileUser extends Component {
             .onSnapshot(
                 docs =>{
                     let posts = [];
-                   docs.forEach( doc => {
+                docs.forEach( doc => {
                         posts.push({
                             id: doc.id,
                             data: doc.data()
                 })
-                       this.setState({
+                    this.setState({
                         posts: posts,
-                   })
+                    })
                 })
                 }
             )

@@ -19,9 +19,9 @@ class Comentario extends Component {
         db.collection('posts')
         .doc(this.state.id)
         .onSnapshot(doc => {
-          this.setState({
+        this.setState({
             comentarios: doc.data().comentarios
-          })
+        })
         })
     }
     newComment(text){
@@ -69,7 +69,7 @@ class Comentario extends Component {
                     style = {styles.input}
                     value={this.state.nuevoComentario}
                 />
-                 {this.state.nuevoComentario === '' ? <></>
+                {this.state.nuevoComentario === '' ? <></>
                     :
                     <TouchableOpacity onPress={()=> this.newComment(this.state.nuevoComentario, this.state.id)}>
                         <Text> Agregar Comentario </Text>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, TextInput, Text, TouchableOpacity} from 'react-native';
-import Camara from '../../components/Camara';
+import Camara from '../../components/Camara/Camara';
 import {auth, db} from '../../firebase/config'
 
 class NewPost extends Component {
