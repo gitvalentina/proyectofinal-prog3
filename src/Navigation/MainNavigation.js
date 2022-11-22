@@ -7,7 +7,7 @@ import LoginScreen from '../Screens/Login/Login'
 import Register from "../Screens/Register/Register";
 import Comentario from '../Screens/Comentario/Comentario'; 
 import ProfileUser from '../Screens/ProfileUser/ProfileUser';
-import Buscador from '../components/Buscador/Buscador';
+import Buscador from '../Screens/Buscador/Buscador';
 import Profile from '../Screens/Profile/Profile';
 
 

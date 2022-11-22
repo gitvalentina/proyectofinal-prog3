@@ -7,7 +7,7 @@ import NewPost from '../Screens/NewPost/NewPost';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import Buscador from '../components/Buscador/Buscador';
+import Buscador from '../Screens/Buscador/Buscador';
 
 
 const Tab = createBottomTabNavigator()
