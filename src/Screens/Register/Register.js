@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import {auth, db} from '../../firebase/config';
 
+
 class Register extends Component {
     constructor(){
         super()
         this.state ={
             username:'',
             email:'',
-            password:''
+            password:'',
+            biografia:'',
+            //imagenPerfil:''
         }
     }
     registrarUsuario(username, email, password){
@@ -18,6 +21,7 @@ class Register extends Component {
                 db.collection('users').add({
                     email:email,
                     username:username,
+                    biografia:biografia,
                     createdAt:Date.now()
                 })
             )
@@ -52,6 +56,13 @@ class Register extends Component {
                     onChangeText={text => this.setState({password: text})}
                     value={this.state.password}
                     secureTextEntry={true}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder='Escribi algo sobre vos'
+                    keyboardType='default'
+                    onChangeText={text => this.setState({biografia: text})}
+                    value={this.state.biografia}
                 />
                 <View>
                     <TouchableOpacity style={styles.touchable} onPress={()=> this.registrarUsuario(this.state.username, this.state.email, this.state.password)}>

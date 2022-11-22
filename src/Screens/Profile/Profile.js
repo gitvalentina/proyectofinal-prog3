@@ -20,12 +20,15 @@ class Profile extends Component {
         db.collection('users')
         .where('email', '==', auth.currentUser.email)
         .onSnapshot(doc => {
-          doc.forEach(doc => this.setState({
-            id: doc.id,
-            datosPerfil: doc.data()
-          })) 
-          
-        })
+            let perfil = {}
+            doc.forEach(doc => {
+                perfil = doc.data();
+            })
+        this.setState({
+            datosPerfil: perfil
+        }) , () => console.log(this.state.datosPerfil)
+        }
+        )
 
         //para mostrar sus posts
         db.collection('posts')
@@ -54,15 +57,16 @@ class Profile extends Component {
         console.log(this.state.post)
         return (
 
-           <> 
+        <> 
                 <View style={styles.container}>
                     <Text > Perfil de {this.state.datosPerfil.username} </Text>
                     <Text> Bienvenido: {auth.currentUser.email} </Text>
                     <Text> Foto de Perfil: </Text>
+                    <Text> Biografia: {auth.currentUser.biografia} </Text>
                     <Image
-                      style={styles.foto}
-                      source={{ uri: this.state.datosPerfil.photo }}
-                      resizeMode='contain'
+                    style={styles.foto}
+                    source={{ uri: this.state.datosPerfil.photo }}
+                    resizeMode='contain'
                     />
                     <Text> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
                     
@@ -78,8 +82,7 @@ class Profile extends Component {
                             />
                         </View>
                     }
-                  
-                      
+        
                         <TouchableOpacity onPress={() => this.signOut()} style={styles.touchable} >
                             <Text>Cerrar sesión</Text>
                         </TouchableOpacity>
