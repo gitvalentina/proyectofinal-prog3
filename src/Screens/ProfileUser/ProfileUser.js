@@ -49,6 +49,7 @@ class ProfileUser extends Component {
             )
         }
     render() {
+        console.log(this.state.posts)
         return (
             <View>
                 <Text> {this.state.user.username}</Text>
@@ -59,7 +60,11 @@ class ProfileUser extends Component {
                 <FlatList 
                 data={this.state.posts}
                 keyExtractor={ onePost => onePost.id.toString()}
-                renderItem={ ({item}) => <Post postData={item} />}
+                renderItem={ ({item}) => <Post 
+                    navigation= {this.props.navigation} 
+                    id= {item.id} 
+                    data={item.data} />
+                }
                 />   
             </View>
         );

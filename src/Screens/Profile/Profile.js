@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity, Text, Image} from 'react-native';
 import {auth, db} from '../../firebase/config';
 import Post from '../../components/Post/Post';
-import LoginScreen from '../../Screens/Login/Login';
+import LoginScreen from '../Login/Login';
 import MyPost from '../../components/MyPost/MyPost';
 
 class Profile extends Component {
@@ -55,12 +55,13 @@ class Profile extends Component {
 
     render() {
         console.log(this.state.post)
+        console.log(this.props)
         return (
 
         <> 
-                    <TouchableOpacity onPress={() => this.signOut()} style={styles.touchable} >
-                            <Text>Cerrar sesión</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.signOut()} style={styles.touchable} >
+                    <Text>Cerrar sesión</Text>
+                </TouchableOpacity>
                 <View style={styles.container}>
                     <Text > Perfil de {this.state.datosPerfil.username} </Text>
                     <Text> Bienvenido: {auth.currentUser.email} </Text>
@@ -72,20 +73,17 @@ class Profile extends Component {
                     resizeMode='contain'
                     />
                     <Text> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
-                </View>
-                    {this.state.post.length == 0 ? 
-                        <Text>Aun no hay posteos</Text>
-                        :
-                        <>
-                            <Text> Ha subido un total de {this.state.post.length} posteos </Text>
-                            <FlatList 
+                    <Text> Ha subido un total de {this.state.post.length} posteos </Text>
+                    <FlatList 
                                 data = {this.state.post}
                                 keyExtractor={(data)=> data.id.toString()}
-                                renderItem = {(item) => <MyPost data={item} id={item.item.id} />} 
+                                renderItem = {(item) => <MyPost  
+                                    navigation= {this.props.navigation} 
+                                    id= {item.item.id} 
+                                    data={item} />} 
                             />
-                        </>
-                    }
-                </>  
+                </View>
+        </>  
             
             
            
