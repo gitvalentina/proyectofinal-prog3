@@ -19,9 +19,6 @@ class LoginScreen extends Component {
         this.props.navigation.navigate('TabNavigation')
         }
     })
-//che ,e falta  sign out
-
-
     }
 
 

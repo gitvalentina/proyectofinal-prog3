@@ -81,11 +81,11 @@ class Comentario extends Component {
                         <Text style={styles.touchable}> Agregar Comentario </Text>
                     </TouchableOpacity>
                 }
-              
+            
             </View>
         )
     }
-  }
+}
 
 const styles = StyleSheet.create({
     container:{
