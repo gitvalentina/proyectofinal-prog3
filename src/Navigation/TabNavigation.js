@@ -7,6 +7,7 @@ import NewPost from '../Screens/NewPost/NewPost';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import Buscador from '../components/Buscador/Buscador';
 
 
 const Tab = createBottomTabNavigator()
@@ -19,7 +20,7 @@ export default function TabNavigation (){
                     component={Home}
                     options= {{ 
                         tabBarIcon: () => <FontAwesome name="home" size={35} color="black" />,
-                        title: 'HOME', 
+                        title: 'Home', 
                         headerStyle: {
                             backgroundColor: 'brown',
                         },
@@ -27,15 +28,15 @@ export default function TabNavigation (){
                     }}    
                 />
                 <Tab.Screen 
-                    name = 'Profile' 
-                    component={Profile}
-                    options= {{ tabBarIcon: () => <MaterialCommunityIcons name="face-woman-profile" size={35} color="black" />, 
-                    title: 'My Profile', 
+                    name = 'Search' 
+                    component={Buscador}
+                    options= {{ tabBarIcon: () =>  <FontAwesome name="search" size={35} color="black" />, 
+                    title: 'Search', 
                     headerStyle: {
                         backgroundColor: 'brown',
                     },
                     headerTintColor: '#fff',
-                    }}  
+                    }}
                 />
                 <Tab.Screen 
                     name = 'NewPost' 
@@ -47,6 +48,17 @@ export default function TabNavigation (){
                     },
                     headerTintColor: '#fff',
                     }}
+                />
+                <Tab.Screen 
+                    name = 'Profile' 
+                    component={Profile}
+                    options= {{ tabBarIcon: () => <MaterialCommunityIcons name="face-woman-profile" size={35} color="black" />, 
+                    title: 'My Profile', 
+                    headerStyle: {
+                        backgroundColor: 'brown',
+                    },
+                    headerTintColor: '#fff',
+                    }}  
                 />
             </Tab.Navigator>
     )
