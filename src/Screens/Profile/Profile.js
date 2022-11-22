@@ -54,8 +54,6 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.state.post)
-        console.log(this.props)
         return (
 
         <> 
@@ -66,12 +64,14 @@ class Profile extends Component {
                     <Text > Perfil de {this.state.datosPerfil.username} </Text>
                     <Text> Bienvenido: {auth.currentUser.email} </Text>
                     <Text> Foto de Perfil: </Text>
-                    <Text> Biografia: {auth.currentUser.biografia} </Text>
                     <Image
-                    style={styles.foto}
-                    source={{ uri: this.state.datosPerfil.photo }}
-                    resizeMode='contain'
+                        style={styles.foto}
+                        source={{
+                            uri: "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG.png",
+                        }}
+                        resizeMode='contain'
                     />
+                   <Text> Biografia: {auth.currentUser.biografia} </Text>
                     <Text> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
                     <Text> Ha subido un total de {this.state.post.length} posteos </Text>
                     <FlatList 
@@ -115,18 +115,13 @@ const styles = StyleSheet.create({
         backgroundColor:"lightgray",
         height:"100%",
     }, 
+    foto: {
+        height: 150,
+		width: 150,
+		marginTop: 10,
+        marginBottom: 10
+    }
 })
 
 export default Profile;
 
-
-{/* <FlatList
-                data={this.state.post}
-                keyExtractor={(data)=> data.id.toString()}
-                renderItem={(item)=><Post data={item.data}/>}
-            />
-             */}
-
-            {/* <TouchableOpacity style={styles.touchable} onPress={()=> this.props.desloguearse()}>
-                    <Text style={styles.texto}>Desloguearse</Text> </TouchableOpacity> */}
-            

@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, FlatList, ActivityIndicator } from 
 import {auth, db} from '../../firebase/config';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import Post from '../../components/Post/Post';
-import Buscador from '../../components/Buscador/Buscador';
+
 
 class Home extends Component{
     constructor(){
@@ -36,9 +36,6 @@ class Home extends Component{
     render(){
         return(
             <>
-            <main>
-            <Buscador metodoQueBusca={(nombre)=> this.metodoQueBusca(nombre)} metodoQueResetea={() => this.metodoQueResetea()}></Buscador>
-            </main>
             { this.state.cargado == false?  <ActivityIndicator size="large" color="black" />:
             <View style={styles.container1}>
                 <FlatList //toma ese estado, le genera una key a cada item y renderiza x cada uno un componente post..
