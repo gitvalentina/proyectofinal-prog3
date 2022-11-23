@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import {auth, db} from '../../firebase/config';
 import firebase from 'firebase';
 import {FontAwesome} from '@expo/vector-icons';
@@ -99,16 +99,21 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         margin:15,
         borderWidth:'radius'
-      },
-      posteo:{
+        },
+    posteo:{
         marginBottom: 60,
         backgroundColor: 'lightgrey',
         alignItems:'center'
-      },
-      data:{
-        margin:10,
-        backgroundColor: 'gray',
-        alignItems:'center'
+        },
+    data:{
+        //margin:10,
+        alignItems:'center',
+        backgroundColor: 'rgb(255,255,242)',
+        fontFamily: 'monospace',
+        fontSize: 20,
+        textAlign: 'center',
+        color: 'rgb(128, 128, 128)',
+        margin: 21
       }
 })
 
