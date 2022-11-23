@@ -9,15 +9,16 @@ class Buscador extends Component{ //capturar valores
         super(props) //componente hijo de Home
         this.state={
             valorInput:'',
-            posts:[]
+            posts:[],
+            user:[]
         }
     }
 
     buscar(text){
-    console.log(text)
-    console.log(this.state.valorInput)
         this.setState({valorInput:text})
-        db.collection('users').where('username', '==', text).onSnapshot(
+        db.collection('users')
+        .where('username', '==', text)
+        .onSnapshot(
             docs => {
                 let posts = [];
                 docs.forEach( doc => {
@@ -25,15 +26,15 @@ class Buscador extends Component{ //capturar valores
                         id: doc.id,
                         data: doc.data()
                     })
+                    console.log(doc.data())
                     this.setState({
                         posts: posts,
+                        user: doc.data()
                     })
                 })   
             }
         )
     }
-
-
     render(){
         return( 
         <View>
@@ -46,19 +47,24 @@ class Buscador extends Component{ //capturar valores
                 <TouchableOpacity style={styles.touchableL} onPress={()=> this.buscar(this.state.valorInput)} >
                     <Text>Buscar</Text> 
                 </TouchableOpacity>
-                
-                <FlatList 
+            <>
+                {   this.state.valorInput == 0? 
+                    <></>
+                    :
+                    this.state.valorInput == this.state.user.username ?
+                    <FlatList 
                     data={this.state.posts}
                     keyExtractor={ onePost => onePost.id.toString()}
                     renderItem={({item}) => 
-                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('ProfileUser')}>
-                            { this.state.valorInput == item.data.username ?
-                                <Text>{item.data.username}</Text > : 
-                                <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}>No se ha encontrado ningun usuario con ese nombre</Text> 
-                            }
+                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('ProfileUser', { email: item.data.email })}>
+                            <Text>{item.data.username}</Text >
                         </TouchableOpacity> 
                     }
-                /> 
+                    /> 
+                    :  
+                    <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}>No se ha encontrado ningun usuario con ese nombre</Text> 
+                }
+            </> 
         </View>
             )
     
