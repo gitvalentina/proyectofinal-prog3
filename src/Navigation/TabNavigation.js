@@ -30,7 +30,7 @@ export default function TabNavigation (){
                 <Tab.Screen 
                     name = 'Search' 
                     component={Buscador}
-                    options= {{ tabBarIcon: () =>  <FontAwesome name="search" size={35} color="black" />, 
+                    options= {{ tabBarIcon: () =>  <FontAwesome name="search" size={30} color="black" />, 
                     title: 'Search', 
                     headerStyle: {
                         backgroundColor: 'brown',

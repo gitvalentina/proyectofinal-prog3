@@ -16,7 +16,7 @@ class ProfileUser extends Component {
     };
     componentDidMount(){
             db.collection('posts')
-            .where('owner', '==', this.props.route.params.email)
+            .where('owner', '==', this.props.route.params.email )
             .onSnapshot(
                 docs =>{
                     let posts = [];
@@ -49,7 +49,7 @@ class ProfileUser extends Component {
             )
         }
     render() {
-        console.log(this.state.posts)
+        console.log(this.props)
         return (
             <View>
                 <Text> {this.state.user.username}</Text>

@@ -26,6 +26,7 @@ class Home extends Component{
                     id: doc.id, //luego lo usamos en el update. docs es el parametro del forEach
                     data: doc.data() //viene por props de item.data
                 })
+                
             }) //foreach es de FB y no de Java; es un bucle de firebase
             this.setState({
                 info: publicaciones
@@ -33,11 +34,12 @@ class Home extends Component{
         })
     }
 
+
     render(){
         return(
             <>
             <main>
-            <Buscador metodoQueBusca={(nombre)=> this.metodoQueBusca(nombre)} metodoQueResetea={() => this.metodoQueResetea()}></Buscador>
+            <Buscador navigation= {this.props.navigation} />
             </main>
             { this.state.cargado == false?  <ActivityIndicator size="large" color="black" />:
             <View style={styles.container1}>
