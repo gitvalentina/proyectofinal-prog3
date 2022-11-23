@@ -7,16 +7,16 @@ class ProfileUser extends Component {
     constructor(props){
         super(props)
         this.state = {
-            user:[],
             posts:[],
-            email:'',
-            bio:'',
-            photo:'',
+            datosAmigo: {},
+            id:'',
+            
         }
     };
     componentDidMount(){
             db.collection('posts')
             .where('owner', '==', this.props.route.params.email )
+            .orderBy('createdAt', 'desc')
             .onSnapshot(
                 docs =>{
                     let posts = [];
@@ -37,12 +37,9 @@ class ProfileUser extends Component {
                 docs => {
                     let user = [];
                     docs.forEach( doc => {
-                        user.push({
-                            id: doc.id,
-                            data: doc.data()
-                        })
                         this.setState({
-                            user: user[0].data
+                            id: doc.id,
+                            datosAmigo: doc.data()
                         })
                     }) 
                 }
@@ -51,12 +48,11 @@ class ProfileUser extends Component {
     render() {
         console.log(this.props)
         return (
-            <View>
-                <Text> {this.state.user.username}</Text>
-                <Text>{this.state.user.bio}</Text>
-                <Text>{this.state.user.owner}</Text>
-                <Text> Fecha de último login: {auth.currentUser.metadata.lastSignInTime} </Text>
-                <Text>Cantidad de posts: {this.state.posts.length}</Text>
+            <View style={styles.container}>
+                <Text style={styles.texto1}> Perfil de {this.state.datosAmigo.username}</Text>
+                <Text style={styles.texto2}>Algo sobre mi:{this.state.datosAmigo.biografia}</Text>
+                <Text style={styles.texto2}> Contacto: {this.state.datosAmigo.email}</Text>
+                <Text style={styles.texto3}>Cantidad de posts: {this.state.posts.length}</Text>
                 <FlatList 
                 data={this.state.posts}
                 keyExtractor={ onePost => onePost.id.toString()}
@@ -71,6 +67,34 @@ class ProfileUser extends Component {
     }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    texto1:{
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'left',     
+        marginTop:'2%',
+        textAlign: 'center'
+    },
+    texto2:{
+        fontSize: 15,
+        textAlign: 'left',
+        marginTop:'2%',
+        textAlign: 'flex-start'
+        
+    },
+    texto3:{
+        fontSize: 15,
+        textAlign: 'left',
+        marginTop:'2%',
+        textAlign: 'flex-start'
+        
+    },
+    container: {
+        marginTop:20,
+        paddingHorizontal: 10,
+        backgroundColor:"lightgray",
+        height:"100%",
+    }, 
+})
 
 export default ProfileUser;

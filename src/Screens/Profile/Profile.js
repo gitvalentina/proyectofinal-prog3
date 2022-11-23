@@ -62,8 +62,8 @@ class Profile extends Component {
                 </TouchableOpacity>
                 <View style={styles.container}>
                     <Text style={styles.texto1}> Perfil de {this.state.datosPerfil.username} </Text>
-                    <Text style={styles.texto2}> Bienvenido: {auth.currentUser.email} </Text>
-                    <Text style={styles.texto2}> Foto de Perfil: </Text>
+                    <Text style={styles.texto2}> Contacto: {auth.currentUser.email} </Text>
+                    <Text style={styles.texto2}> Foto de Perfil </Text>
                     <Image
                         style={styles.foto}
                         source={{
@@ -71,7 +71,7 @@ class Profile extends Component {
                         }}
                         resizeMode='contain'
                     />
-                    <Text style={styles.texto2}> Biografia: {this.state.datosPerfil.biografia} </Text>
+                    <Text style={styles.texto2}> Algo sobre mi: {this.state.datosPerfil.biografia} </Text>
                     <Text style={styles.texto2}> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
                     <Text style={styles.texto3}> Ha subido un total de {this.state.post.length} posteos </Text>
                     <FlatList 
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     },
     texto1:{
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 25,
         textAlign: 'left',     
         marginTop:'2%',
         textAlign: 'center'
