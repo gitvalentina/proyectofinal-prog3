@@ -73,7 +73,7 @@ class Buscador extends Component{ //capturar valores
 //el evento onChange: para obtener la info que el usuario ingresa en el campo. el estado del componente se actualizará cada vez que el usuario ingrese un carácter.
 const styles=StyleSheet.create({
     input:{
-        height: 30,
+        height: 50,
         width:300,
         alignSelf:'center',
         borderWidth:3,

@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, FlatList, ActivityIndicator } from 
 import {auth, db} from '../../firebase/config';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import Post from '../../components/Post/Post';
-import Buscador from '../../components/Buscador/Buscador';
+
 
 class Home extends Component{
     constructor(){
