@@ -61,19 +61,19 @@ class Profile extends Component {
                     <Text>Cerrar sesión</Text>
                 </TouchableOpacity>
                 <View style={styles.container}>
-                    <Text > Perfil de {this.state.datosPerfil.username} </Text>
-                    <Text> Bienvenido: {auth.currentUser.email} </Text>
-                    <Text> Foto de Perfil: </Text>
+                    <Text style={styles.texto1}> Perfil de {this.state.datosPerfil.username} </Text>
+                    <Text style={styles.texto2}> Bienvenido: {auth.currentUser.email} </Text>
+                    <Text style={styles.texto2}> Foto de Perfil: </Text>
                     <Image
                         style={styles.foto}
                         source={{
-                            uri: "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG.png",
+                            uri: "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG.png"
                         }}
                         resizeMode='contain'
                     />
-                    <Text> Biografia: {auth.currentUser.biografia} </Text>
-                    <Text> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
-                    <Text> Ha subido un total de {this.state.post.length} posteos </Text>
+                    <Text style={styles.texto2}> Biografia: {this.state.datosPerfil.biografia} </Text>
+                    <Text style={styles.texto2}> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
+                    <Text style={styles.texto3}> Ha subido un total de {this.state.post.length} posteos </Text>
                     <FlatList 
                                 data = {this.state.post}
                                 keyExtractor={(data)=> data.id.toString()}
@@ -106,8 +106,26 @@ const styles = StyleSheet.create({
         borderWidth:2,
         borderColor:"black"
     },
-    texto:{
-        color:"#FFF"
+    texto1:{
+        fontWeight: 'bold',
+        fontSize: 30,
+        textAlign: 'left',     
+        marginTop:'2%',
+        textAlign: 'center'
+    },
+    texto2:{
+        fontSize: 20,
+        textAlign: 'left',
+        marginTop:'2%',
+        textAlign: 'center'
+        
+    },
+    texto3:{
+        fontSize: 20,
+        textAlign: 'left',
+        marginTop:'2%',
+        textAlign: 'flex-start'
+        
     },
     container: {
         marginTop:20,
@@ -119,7 +137,8 @@ const styles = StyleSheet.create({
         height: 150,
 		width: 150,
 		marginTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        alignSelf: 'center'
     }
 })
 
