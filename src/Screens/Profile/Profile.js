@@ -71,7 +71,7 @@ class Profile extends Component {
                         }}
                         resizeMode='contain'
                     />
-                   <Text> Biografia: {auth.currentUser.biografia} </Text>
+                    <Text> Biografia: {auth.currentUser.biografia} </Text>
                     <Text> Fecha de creación: {auth.currentUser.metadata.creationTime} </Text>
                     <Text> Ha subido un total de {this.state.post.length} posteos </Text>
                     <FlatList 
@@ -86,7 +86,7 @@ class Profile extends Component {
         </>  
             
             
-           
+    
         )
     }
 }

@@ -19,9 +19,9 @@ class Register extends Component {
         .then(()=> {
             return(
                 db.collection('users').add({
-                    email:email,
-                    username:username,
-                    biografia:biografia,
+                    email: auth.currentUser.email,
+                    username:this.state.username,
+                    biografia:this.state.biografia,
                     createdAt:Date.now()
                 })
             )
@@ -65,7 +65,7 @@ class Register extends Component {
                     value={this.state.biografia}
                 />
                 <View>
-                    <TouchableOpacity style={styles.touchable} onPress={()=> this.registrarUsuario(this.state.username, this.state.email, this.state.password)}>
+                    <TouchableOpacity style={styles.touchable} onPress={()=> this.registrarUsuario(this.state.username, this.state.email, this.state.password, this.state.biografia)}>
                         <Text>Registrarme</Text>
                     </TouchableOpacity>
                 </View>

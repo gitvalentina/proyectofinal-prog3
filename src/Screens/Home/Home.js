@@ -39,9 +39,7 @@ class Home extends Component{
     render(){
         return(
             <>
-            <main>
-            <Buscador navigation= {this.props.navigation} />
-            </main>
+            
             { this.state.cargado == false?  <ActivityIndicator size="large" color="black" />:
             <View style={styles.container1}>
                 <FlatList //toma ese estado, le genera una key a cada item y renderiza x cada uno un componente post..
