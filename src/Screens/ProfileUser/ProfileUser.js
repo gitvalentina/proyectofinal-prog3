@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native';
+import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {auth, db} from '../../firebase/config';
 import Post from "../../components/Post/Post";
 
@@ -8,8 +8,8 @@ class ProfileUser extends Component {
         super(props)
         this.state = {
             posts:[],
-            datosAmigo: {},
-            id:'',
+            datosAmigo: '',
+            mail: props.route.params.email,
             
         }
     };
@@ -40,18 +40,20 @@ class ProfileUser extends Component {
                         this.setState({
                             id: doc.id,
                             datosAmigo: doc.data()
+                            
                         })
                     }) 
                 }
             )
         }
+        
     render() {
-        console.log(this.props)
+        console.log(this.state.datosAmigo);
         return (
             <View style={styles.container}>
                 <Text style={styles.texto1}> Perfil de {this.state.datosAmigo.username}</Text>
                 <Text style={styles.texto2}>Algo sobre mi:{this.state.datosAmigo.biografia}</Text>
-                <Text style={styles.texto2}> Contacto: {this.state.datosAmigo.email}</Text>
+                <Text style={styles.texto2}> Contacto: {this.state.mail}</Text>
                 <Text style={styles.texto3}>Cantidad de posts: {this.state.posts.length}</Text>
                 <FlatList 
                 data={this.state.posts}
