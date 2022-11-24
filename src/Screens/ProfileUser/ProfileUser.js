@@ -32,7 +32,7 @@ class ProfileUser extends Component {
                 }
             )
             db.collection('users')
-            .where("owner", "==", this.props.route.params.email)
+            .where("email", "==", this.props.route.params.email)
             .onSnapshot(
                 docs => {
                     let user = [];
