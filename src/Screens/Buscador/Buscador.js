@@ -8,65 +8,84 @@ class Buscador extends Component{ //capturar valores
     constructor(props){ // Representan información que es enviada al momento en el que un componente es utilizado. 
         super(props) //componente hijo de Home
         this.state={
-            valorInput:'',
-            posts:[],
-            user:[]
+            data: [],
+            id:'', 
+            resultado: [],
+            user: [], 
+            valorInput: '',
+            buscarlo:'',
+            mensaje: ''
         }
     }
 
-    buscar(text){
-        this.setState({valorInput:text})
+    componentDidMount(){
         db.collection('users')
-        .where('username', '==', text)
-        .onSnapshot(
-            docs => {
-                let posts = [];
-                docs.forEach( doc => {
-                    posts.push({
-                        id: doc.id,
-                        data: doc.data()
-                    })
-                    console.log(doc.data())
+        .onSnapshot(doc => {
+          let resultado = [];
+            doc.forEach(doc => {
+                resultado.push({
+                    id: doc.id, 
+                    data: doc.data()
+                })
+                
+            })
+            this.setState(
+                {data: resultado}
+            )
+         
+        })
+    } 
+
+    buscar(text){
+    
+        let filtrado = this.state.data.filter(elm =>
+            { 
+                if(elm.data.username.toUpperCase().includes(text.toUpperCase())){
+                    return elm
+                }
+        })
+            this.setState({buscarlo: text})
+                if(filtrado.length > 0){
                     this.setState({
-                        posts: posts,
-                        user: doc.data()
+                        user: filtrado,
+                        users: text
                     })
-                })   
-            }
-        )
+                } 
+                else{
+                    this.setState({
+                        mensaje: "No se ha encontrado ningun usuario con ese nombre"
+                    })
+                    
+                }
     }
+
     render(){
         return( 
-        <View>
-            <TextInput
-                style={styles.input}
-                placeholder='Search Users by Username'
-                keyboardType="default"
-                onChangeText={text => this.setState({valorInput : text})}
-                value={this.state.valorInput}/>
+            <View>
+                <TextInput
+                    style={styles.input}
+                    placeholder='Search Users by Username'
+                    keyboardType="default"
+                    onChangeText={text => this.setState( {valorInput:text} )}
+                    value={this.state.valorInput}
+                />
+
                 <TouchableOpacity style={styles.touchableL} onPress={()=> this.buscar(this.state.valorInput)} >
                     <Text>Buscar</Text> 
                 </TouchableOpacity>
-            <>
-                {   this.state.valorInput == 0? 
-                    <></>
-                    :
-                    this.state.valorInput == this.state.user.username ?
-                    <FlatList 
-                    data={this.state.posts}
-                    keyExtractor={ onePost => onePost.id.toString()}
-                    renderItem={({item}) => 
+                
+                <FlatList
+                    data={this.state.user}
+                    keyExtractor={(item) => item.id}
+                    renderItem= { ({item}) => <View>
                         <TouchableOpacity onPress={()=> this.props.navigation.navigate('ProfileUser', { email: item.data.email })}>
-                            <Text>{item.data.username}</Text >
+                            <Text style={styles.user}>{item.data.username}</Text >
                         </TouchableOpacity> 
-                    }
-                    /> 
-                    :  
-                    <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}>No se ha encontrado ningun usuario con ese nombre</Text> 
-                }
-            </> 
-        </View>
-            )
+                    </View> }
+                />
+                <Text>{this.state.mensaje}</Text>
+            </View>
+        )
     
     }
 }
@@ -104,6 +123,15 @@ const styles=StyleSheet.create({
         justifyContent: "center",
         backgroundColor:"rgba(176, 145, 0, 0.9)"
     },
+    user: {
+        marginTop: 10,
+        fontSize: 24,
+        marginLeft: '0',
+        fontWeight: 'bold',
+        flexDirecion: 'wrap',
+        textAlign: 'center'
+        
+    }
 })
 
 export default Buscador;
