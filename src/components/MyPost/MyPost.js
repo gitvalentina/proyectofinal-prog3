@@ -76,7 +76,7 @@ class MyPost extends Component {
         return( //primero <Image>
         
             <View style={styles.posteo}>
-                 <TouchableOpacity onPress={()=> this.deletePost()}> <Text>Borrar Post</Text> </TouchableOpacity>
+                 <TouchableOpacity onPress={()=> this.deletePost()}> <Text style={styles.boton}>Borrar Post</Text> </TouchableOpacity>
                 <Image style={styles.image} source={this.props.data.item.data.photo} resizeMode={'contain'}/>
                 <View style={styles.data}>
                     <Text style={{fontSize:24, fontWeight: 'bold', margin:8}}> {this.props.data.item.data.description} </Text>
@@ -122,6 +122,20 @@ const styles = StyleSheet.create({
         margin:10,
         backgroundColor: 'gray',
         alignItems:'center'
+      },
+      boton:{
+        padding: 10,
+        width:200,
+        alignSelf:'flex-end',
+        alignItems:'center',
+        backgroundColor: "rgba(176, 145, 0, 0.9)",
+        marginTop: 10,
+        borderRadius:4,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderStyle:"solid",
+        borderWidth:2,
+        borderColor:"black"
       }
 })
 
